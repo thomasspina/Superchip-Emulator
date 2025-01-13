@@ -54,7 +54,7 @@ void Chip8::loadFontSet() {
 void Chip8::loadROM(const std::string& message) {
     try {
         // Construct the filename and path 
-        const std::string fileName = "../../games/" + message + ".ch8"; // TODO: Provide better path?
+        const std::string fileName = "../games/" + message + ".ch8"; // TODO: Provide better path?
         const std::filesystem::path inputFilePath{fileName};
 
         std::cout << "Attempting to load ROM from: " << inputFilePath << std::endl;

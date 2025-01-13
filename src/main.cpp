@@ -3,22 +3,20 @@
 
 int main() {
     // init Chip8
-    //Chip8 emulator = Chip8();
+    Chip8 emulator = Chip8();
 
     // initialize graphics
-    Graphics graphics = Graphics();
-    graphics.initializeGraphics();
-
+    graphics::initializeGraphics();
+    graphics::clearScreen();
 
     // load ROM for games
-    // emulator.loadROM("flightrunner");
+    emulator.loadROM("flightrunner");
 
-    // while system is running, execute instructions, etc
+    // Main loop
     bool quit = false;
     SDL_Event event;
-    graphics.clearScreen();
     while (!quit) {
-        while (SDL_PollEvent(&event)) {
+        while (SDL_PollEvent(&event)) { // poll for close window event
             if (event.type == SDL_QUIT) {
                 quit = true;
             }
@@ -28,7 +26,7 @@ int main() {
         //emulator.emulationCycle();
     }
 
-    graphics.destroyGraphics();
+    graphics::destroyGraphics();
 
     return 0;
 }
