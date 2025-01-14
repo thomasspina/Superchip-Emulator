@@ -8,11 +8,12 @@ namespace graphics {
         SDL_Renderer* renderer = nullptr;
     }
 
-    unsigned char gfx[C8_SCREEN_WIDTH * C8_SCREEN_HEIGHT] = {0};
+    unsigned char gfx[C8_SCREEN_HEIGHT][C8_SCREEN_WIDTH] = {0};
 }
 
 
 void graphics::initializeGraphics() {
+
     if (SDL_Init(SDL_INIT_VIDEO)) {
         std::cerr << "SDL initialization failed: " << SDL_GetError() << std::endl;
         return;
@@ -23,6 +24,7 @@ void graphics::initializeGraphics() {
         SDL_Quit();
         return;
     }
+    // since screen is 64 x 32, we need to scale up everything we draw
     SDL_RenderSetScale(renderer, C8_SCREEN_SCALE, C8_SCREEN_SCALE);
 }
 
@@ -33,13 +35,22 @@ void graphics::destroyGraphics() {
 }
 
 void graphics::clearScreen() {
-    std::fill_n(gfx, C8_SCREEN_WIDTH * C8_SCREEN_HEIGHT, 0);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
-    SDL_RenderPresent(renderer);
 }
 
 void graphics::drawScreen() {
+    clearScreen();
+    
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     
+    for (int i = 0; i < C8_SCREEN_HEIGHT; i++) {
+        for (int j = 0; j < C8_SCREEN_WIDTH; j++) {
+            if (gfx[i][j]) {
+                SDL_RenderDrawPoint(renderer, j, i);
+            }
+        }
+    }
+
+    SDL_RenderPresent(renderer);
 }

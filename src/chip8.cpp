@@ -1,4 +1,5 @@
 #include "chip8.hpp"
+#include "graphics.hpp"
 #include "constants.hpp"
 
 #include <fstream>
@@ -6,13 +7,15 @@
 #include <iostream>
 #include <filesystem>
 
-// Constructor
 Chip8::Chip8() {
     // Reset pointers and counters
     pc = 0x200; 
     opcode = 0;
     I = 0;
     sp = 0;
+
+    // set flags
+    drawFlag = true; // TODO: change to false
 
 
     // TODO:  Clear display	
@@ -415,9 +418,33 @@ void Chip8::executeRAN(unsigned short opInstruction) {
 
 }
 
-// TODO
 void Chip8::executeDR(unsigned short opInstruction) {
+    // DRW Vx, Vy, nibble - Dxyn : Draw n-byte sprite starting at memory location I at (Vx, Vy), 
+    // VF set to 1 if any screen pixels are flipped from set to unset when the sprite is drawn. 
+    // Sprites are XORed onto the existing screen.
 
+    unsigned short x = V[(opInstruction & 0x0F00) >> 8];
+    unsigned short y = V[(opInstruction & 0x00F0) >> 4];
+    unsigned short h = opInstruction & 0x000F;
+    unsigned short line;
+
+    V[0xF] = 0;
+    for (int row = 0; row < h; y++) { // check every byte of the sprite
+        
+        line = memory[I + row]; // byte (line of 8 pixels)
+        for (int col = 0; col < 8; col++) {
+
+            if ((line & (0x80 >> col)) != 0) { // check pixel state
+
+                if (graphics::gfx[y + row][x + col]) { V[0xF] = 1; }
+
+                graphics::gfx[y + row][x + col] ^= 1;
+            }
+        }
+    }
+
+    drawFlag = true;
+    pc += 2;
 }
 
 // TODO
