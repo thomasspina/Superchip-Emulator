@@ -29,6 +29,9 @@ private:
     unsigned short stack[16];
     unsigned char sp;
 
+    // Indicates when the screen needs to be updated
+    bool drawFlag;
+
     void clearStack();
     void clearRegisters();
     void clearMemory();
@@ -60,4 +63,5 @@ public:
 
     void loadROM(const std::string& message);
     void emulationCycle();
+    bool getDrawFlag() const { return drawFlag; }
 };

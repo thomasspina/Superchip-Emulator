@@ -9,4 +9,6 @@ namespace graphics {
     void destroyGraphics();
     void clearScreen();
     void drawScreen();
+
+    unsigned char gfx[C8_SCREEN_HEIGHT][C8_SCREEN_WIDTH] = {0};
 };

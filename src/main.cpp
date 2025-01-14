@@ -10,7 +10,7 @@ int main() {
     graphics::clearScreen();
 
     // load ROM for games
-    emulator.loadROM("flightrunner");
+    //emulator.loadROM("flightrunner");
 
     // Main loop
     bool quit = false;
@@ -22,6 +22,9 @@ int main() {
             }
         }
 
+        if (emulator.getDrawFlag()) {
+            graphics::drawScreen();
+        }
         // emulate a single cycle
         //emulator.emulationCycle();
     }
