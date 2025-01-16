@@ -24,6 +24,7 @@ Chip8::Chip8() {
     clearRegisters();
     clearMemory();
     loadFontSet();
+    clearKeyBuffer();
 
     // TODO: Reset timers
 }
@@ -43,6 +44,12 @@ void Chip8::clearRegisters() {
 void Chip8::clearMemory() {
     for (int i=0; i < 4096; i++) {
         memory[i] = 0;
+    }
+}
+
+void Chip8::clearKeyBuffer() {
+    for (int i=0; i < 16; i++) {
+        key[i] = 0;
     }
 }
 

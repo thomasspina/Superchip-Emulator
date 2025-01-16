@@ -23,11 +23,12 @@ int main() {
                 break;
 
                 case SDL_KEYDOWN:
-                    // TODO: update keydown according to mapping
+                    // TODO: crashes when key not in map
+                    printf("Keydown : %d\n", c8const::key_map.at(*SDL_GetKeyName(event.key.keysym.sym)));
                 break;
 
                 case SDL_KEYUP:
-                    // TODO: update key release according to mapping
+                    printf("Keydown : %d\n", c8const::key_map.at(*SDL_GetKeyName(event.key.keysym.sym)));
                 break;
 
                 default:

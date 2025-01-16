@@ -37,6 +37,7 @@ private:
     void clearStack();
     void clearRegisters();
     void clearMemory();
+    void clearKeyBuffer();
     
     void loadFontSet();
 
