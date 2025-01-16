@@ -25,6 +25,8 @@ private:
     unsigned short I;
     unsigned short pc;
 
+    unsigned char key[16];
+
     // Store return address of subroutines
     unsigned short stack[16];
     unsigned char sp;
@@ -64,4 +66,5 @@ public:
     void loadROM(const std::string& message);
     void emulationCycle();
     bool getDrawFlag() const { return drawFlag; }
+    void setDrawFlag(bool flag) { drawFlag = flag; }
 };

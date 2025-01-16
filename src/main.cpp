@@ -16,14 +16,28 @@ int main() {
     bool quit = false;
     SDL_Event event;
     while (!quit) {
-        while (SDL_PollEvent(&event)) { // poll for close window event
-            if (event.type == SDL_QUIT) {
-                quit = true;
+        while (SDL_PollEvent(&event)) {
+            switch (event.type) {
+                case SDL_QUIT:
+                    quit = true;
+                break;
+
+                case SDL_KEYDOWN:
+                    // TODO: update keydown according to mapping
+                break;
+
+                case SDL_KEYUP:
+                    // TODO: update key release according to mapping
+                break;
+
+                default:
+                break;
             }
         }
 
         if (emulator.getDrawFlag()) {
             graphics::drawScreen();
+            emulator.setDrawFlag(false);
         }
         // emulate a single cycle
         //emulator.emulationCycle();

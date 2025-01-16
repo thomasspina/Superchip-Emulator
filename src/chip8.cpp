@@ -447,9 +447,29 @@ void Chip8::executeDR(unsigned short opInstruction) {
     pc += 2;
 }
 
-// TODO
 void Chip8::executeKII(unsigned short opInstruction) {
+    switch (opInstruction & 0x00FF) {
+        // Ex9E - SKP Vx : Skip next instruction if key with the value of Vx is pressed.
+        case 0x00E9:
+            if (key[V[(opInstruction & 0x0F00) >> 8]]) {
+                pc += 4;
+            } else {
+                pc += 2;
+            }
+        break;
 
+        // ExA1 - SKNP Vx : Skip next instruction if key with the value of Vx is not pressed.
+        case 0x00A1:
+            if (!key[V[(opInstruction & 0x0F00) >> 8]]) {
+                pc += 4;
+            } else {
+                pc += 2;
+            }
+        break;
+
+        default:
+        break;
+    }
 }
 
 // TODO
