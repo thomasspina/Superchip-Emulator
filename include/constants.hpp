@@ -6,6 +6,11 @@
 #define C8_SCREEN_HEIGHT 32
 #define C8_SCREEN_SCALE 10
 
+#define TIMER_HZ 60.0
+#define EMULATOR_CYCLE_HZ 500.0
+
+#define KEY_WAIT_BUFFER_EMPTY 0x10
+
 namespace c8const {
 
     constexpr unsigned char chip8_fontset[80] = 
@@ -28,7 +33,7 @@ namespace c8const {
         0xF0, 0x80, 0xF0, 0x80, 0x80  // F
     };
     
-    const std::unordered_map<char, int> key_map = {
+    const std::unordered_map<char, unsigned char> key_map = {
         {'1', 0x1}, {'2', 0x2}, {'3', 0x3}, {'4', 0xC}, 
         {'Q', 0x4}, {'W', 0x5}, {'E', 0x6}, {'R', 0xD},
         {'A', 0x7}, {'S', 0x8}, {'D', 0x9}, {'F', 0xE},

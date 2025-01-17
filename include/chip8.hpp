@@ -28,6 +28,7 @@ private:
     // Stores current key state. 0 meaning key is up,
     // and any other value meaning key is down.
     unsigned char key[16];
+    unsigned char key_wait_buffer;
 
     // Timer registers that countdown
     unsigned char delay_timer;
@@ -38,7 +39,8 @@ private:
     unsigned char sp;
 
     // Indicates when the screen needs to be updated
-    bool drawFlag;
+    bool draw_flag;
+    bool key_wait_flag;
 
     void clearStack();
     void clearRegisters();
@@ -73,9 +75,9 @@ public:
 
     void loadROM(const std::string& message);
     void emulationCycle();
-    bool getDrawFlag() const { return drawFlag; }
-    void setDrawFlag(bool flag) { drawFlag = flag; }
-    void setKeyState(const int& key_id, const unsigned char& state) { key[key_id] = state; }
+    bool getDrawFlag() const { return draw_flag; }
+    void setDrawFlag(bool flag) { draw_flag = flag; }
+    void setKeyState(const unsigned char& key_id, const unsigned char& state);
     void tickDelayTimer() { delay_timer = delay_timer > 0 ? delay_timer - 1 : delay_timer; }
     void tickSoundTimer() { sound_timer = sound_timer > 0 ? sound_timer - 1 : sound_timer; }
 };

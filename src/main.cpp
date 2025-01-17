@@ -14,7 +14,7 @@ int main() {
 
     // Main loop
     bool quit = false;
-    int key_id;
+    unsigned char key_id;
     SDL_Event event;
     // TODO: don't forget to tick the timers at 60Hz
     // TODO: also, how to calculate time between emulator ticks? is it really 60Hz for emulator or is it more (like 500Hz)
@@ -47,14 +47,15 @@ int main() {
             }
         }
 
+        // emulate a single cycle
+        //emulator.emulationCycle();
+
+
         // draw screen
         if (emulator.getDrawFlag()) {
             graphics::drawScreen();
             emulator.setDrawFlag(false);
         }
-
-        // emulate a single cycle
-        //emulator.emulationCycle();
     }
 
     graphics::destroyGraphics();

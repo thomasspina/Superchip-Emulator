@@ -16,7 +16,8 @@ Chip8::Chip8() {
     sp = 0;
 
     // set flags
-    drawFlag = false;
+    draw_flag = false;
+    key_wait_flag = false;
     
     clearStack();
     clearRegisters();
@@ -48,6 +49,8 @@ void Chip8::clearKeyBuffer() {
     for (int i=0; i < 16; i++) {
         key[i] = 0;
     }
+
+    key_wait_buffer = KEY_WAIT_BUFFER_EMPTY;
 }
 
 void Chip8::resetTimers() {
@@ -60,6 +63,12 @@ void Chip8::loadFontSet() {
     for (int i=0; i < 80; i++) {
         memory[i] = c8const::chip8_fontset[i];
     }
+}
+
+void Chip8::setKeyState(const unsigned char& key_id, const unsigned char& state) { 
+    // store key_id into the buffer if waiting for a keypress
+    if (key_wait_flag) { key_wait_buffer = key_id; }
+    key[key_id] = state; 
 }
 
 // If this does not work, can try to read to a buffer first then transfer data to memory
@@ -452,7 +461,7 @@ void Chip8::executeDR(unsigned short opInstruction) {
         }
     }
 
-    drawFlag = true;
+    draw_flag = true;
     pc += 2;
 }
 
@@ -481,7 +490,6 @@ void Chip8::executeKII(unsigned short opInstruction) {
     }
 }
 
-// TODO
 void Chip8::executeMISC(unsigned short opInstruction) {
     switch (opInstruction & 0x00FF) {
         case 0x0007:
@@ -492,7 +500,14 @@ void Chip8::executeMISC(unsigned short opInstruction) {
 
         case 0x000A:
             // Fx0A - LD Vx, K : Wait for a key press, store the value of the key in Vx.
-            // TODO: how do i do this? // i guess dont increment pc and have a mem of key states when started waiting?
+            if (key_wait_buffer != KEY_WAIT_BUFFER_EMPTY) {
+                V[(opInstruction & 0x0F00) >> 8] = key_wait_buffer;
+                key_wait_flag = false;
+                key_wait_buffer = KEY_WAIT_BUFFER_EMPTY;
+                pc += 2;
+            } else {
+                key_wait_flag = true;
+            }
         break;
 
         case 0x0015:
