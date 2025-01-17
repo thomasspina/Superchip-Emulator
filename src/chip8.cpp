@@ -8,6 +8,7 @@
 #include <filesystem>
 
 Chip8::Chip8() {
+    // TODO: beeping sound is played when sound timer is nonzero
     // Reset pointers and counters
     pc = 0x200; 
     opcode = 0;
@@ -15,18 +16,14 @@ Chip8::Chip8() {
     sp = 0;
 
     // set flags
-    drawFlag = true; // TODO: change to false
-
-
-    // TODO:  Clear display	
+    drawFlag = false;
     
     clearStack();
     clearRegisters();
     clearMemory();
     loadFontSet();
     clearKeyBuffer();
-
-    // TODO: Reset timers
+    resetTimers();
 }
 
 void Chip8::clearStack() {
@@ -51,6 +48,11 @@ void Chip8::clearKeyBuffer() {
     for (int i=0; i < 16; i++) {
         key[i] = 0;
     }
+}
+
+void Chip8::resetTimers() {
+    delay_timer = 0;
+    sound_timer = 0;
 }
 
 void Chip8::loadFontSet() {
@@ -481,7 +483,67 @@ void Chip8::executeKII(unsigned short opInstruction) {
 
 // TODO
 void Chip8::executeMISC(unsigned short opInstruction) {
+    switch (opInstruction & 0x00FF) {
+        case 0x0007:
+            // Fx07 - LD Vx, DT : Set Vx = delay timer value.
+            V[(opInstruction & 0x0F00) >> 8] = delay_timer;
+            pc += 2;
+        break;
 
+        case 0x000A:
+            // Fx0A - LD Vx, K : Wait for a key press, store the value of the key in Vx.
+            // TODO: how do i do this? // i guess dont increment pc and have a mem of key states when started waiting?
+        break;
+
+        case 0x0015:
+            // Fx15 - LD DT, Vx : Set delay timer = Vx.
+            delay_timer = V[(opInstruction & 0x0F00) >> 8];
+            pc += 2;
+        break;
+
+        case 0x0018:
+            // Fx18 - LD ST, Vx : Set sound timer = Vx.
+            sound_timer = V[(opInstruction & 0x0F00) >> 8];
+            pc += 2;
+        break;
+
+        case 0x001E:
+            // Fx1E - ADD I, Vx : Set I = I + Vx.
+            I += V[(opInstruction & 0x0F00) >> 8];
+            pc += 2;
+        break;
+
+        case 0x0029:
+            // Fx29 - LD F, Vx : Set I = location of sprite for digit Vx.
+            I = (V[(opInstruction & 0x0F00) >> 8] & 0x0F) * 0x5;
+            pc += 2;
+        break;
+
+        case 0x0033:
+            // Fx33 - LD B, Vx : Store BCD representation of Vx in memory locations I, I+1, and I+2.
+            memory[I] = V[(opInstruction & 0x0F00) >> 8] / 100;
+            memory[I + 1] = (V[(opInstruction & 0x0F00) >> 8] / 10) % 10;
+            memory[I + 2] = V[(opInstruction & 0x0F00) >> 8] % 10;
+            pc += 2;
+        break;
+
+        case 0x0055:
+            // Fx55 - LD [I], Vx : Store registers V0 through Vx in memory starting at location I.
+            for (int i = 0; i <= ((opInstruction & 0x0F00) >> 8); i++) {
+                memory[I + i] = V[i];
+            }
+            pc += 2;
+        break;
+
+        case 0x0065:
+            // Fx65 - LD Vx, [I] : Read registers V0 through Vx from memory starting at location I.
+            for (int i = 0; i <= ((opInstruction & 0x0F00) >> 8); i++) {
+                V[i] = memory[I + i];
+            }
+            pc += 2;
+        default:
+        break;
+    }
 }
 
 

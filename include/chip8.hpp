@@ -25,7 +25,13 @@ private:
     unsigned short I;
     unsigned short pc;
 
+    // Stores current key state. 0 meaning key is up,
+    // and any other value meaning key is down.
     unsigned char key[16];
+
+    // Timer registers that countdown
+    unsigned char delay_timer;
+    unsigned char sound_timer;
 
     // Store return address of subroutines
     unsigned short stack[16];
@@ -38,6 +44,7 @@ private:
     void clearRegisters();
     void clearMemory();
     void clearKeyBuffer();
+    void resetTimers();
     
     void loadFontSet();
 
@@ -68,4 +75,7 @@ public:
     void emulationCycle();
     bool getDrawFlag() const { return drawFlag; }
     void setDrawFlag(bool flag) { drawFlag = flag; }
+    void setKeyState(const int& key_id, const unsigned char& state) { key[key_id] = state; }
+    void tickDelayTimer() { delay_timer = delay_timer > 0 ? delay_timer - 1 : delay_timer; }
+    void tickSoundTimer() { sound_timer = sound_timer > 0 ? sound_timer - 1 : sound_timer; }
 };

@@ -10,12 +10,16 @@ int main() {
     graphics::clearScreen();
 
     // load ROM for games
-    //emulator.loadROM("flightrunner");
+    emulator.loadROM("flightrunner");
 
     // Main loop
     bool quit = false;
+    int key_id;
     SDL_Event event;
+    // TODO: don't forget to tick the timers at 60Hz
+    // TODO: also, how to calculate time between emulator ticks? is it really 60Hz for emulator or is it more (like 500Hz)
     while (!quit) {
+        // handle user events
         while (SDL_PollEvent(&event)) {
             switch (event.type) {
                 case SDL_QUIT:
@@ -23,12 +27,19 @@ int main() {
                 break;
 
                 case SDL_KEYDOWN:
-                    // TODO: crashes when key not in map
-                    printf("Keydown : %d\n", c8const::key_map.at(*SDL_GetKeyName(event.key.keysym.sym)));
+                    // update emulator key buffer if keydown is on keypad
+                    if (c8const::key_map.contains(*SDL_GetKeyName(event.key.keysym.sym))) {
+                        key_id = c8const::key_map.at(*SDL_GetKeyName(event.key.keysym.sym));
+                        emulator.setKeyState(key_id, 1);
+                    }
                 break;
 
                 case SDL_KEYUP:
-                    printf("Keydown : %d\n", c8const::key_map.at(*SDL_GetKeyName(event.key.keysym.sym)));
+                    // update emulator key buffer if keyup is on keypad
+                    if (c8const::key_map.contains(*SDL_GetKeyName(event.key.keysym.sym))) {
+                        key_id = c8const::key_map.at(*SDL_GetKeyName(event.key.keysym.sym));
+                        emulator.setKeyState(key_id, 0);
+                    }
                 break;
 
                 default:
@@ -36,10 +47,12 @@ int main() {
             }
         }
 
+        // draw screen
         if (emulator.getDrawFlag()) {
             graphics::drawScreen();
             emulator.setDrawFlag(false);
         }
+
         // emulate a single cycle
         //emulator.emulationCycle();
     }
