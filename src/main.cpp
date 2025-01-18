@@ -3,7 +3,6 @@
 
 #include <chrono>
 #include <iostream>
-// TODO: add sound during sound timer
 
 int main() {
     // init Chip8
@@ -15,7 +14,6 @@ int main() {
 
     // load ROM for games
     emulator.loadROM("pong2");
-
     
     bool quit = false;
     unsigned char key_id;
@@ -56,6 +54,7 @@ int main() {
                 break;
 
                 default:
+                break;
             }
         }
 

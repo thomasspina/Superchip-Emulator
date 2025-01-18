@@ -8,7 +8,6 @@
 #include <filesystem>
 
 Chip8::Chip8() {
-    // TODO: beeping sound is played when sound timer is nonzero
     // Reset pointers and counters
     pc = 0x200; 
     opcode = 0;
@@ -71,11 +70,10 @@ void Chip8::setKeyState(const unsigned char& key_id, const unsigned char& state)
     key[key_id] = state; 
 }
 
-// If this does not work, can try to read to a buffer first then transfer data to memory
 void Chip8::loadROM(const std::string& message) {
     try {
         // Construct the filename and path 
-        const std::string fileName = "../games/" + message + ".c8"; // TODO: Provide better path?
+        const std::string fileName = "../games/" + message + ".c8";
         const std::filesystem::path inputFilePath{fileName};
 
         std::cout << "Attempting to load ROM from: " << inputFilePath << std::endl;
@@ -87,11 +85,9 @@ void Chip8::loadROM(const std::string& message) {
 
         // Get file size (might throw filesystem_error)
         const auto length = std::filesystem::file_size(inputFilePath);
-        // TODO: DENOTE PROGRAM START ADDRESS AS CONSTANT
-        std::size_t offset = 512;
         
 
-        if (length > sizeof(memory) - offset) {
+        if (length > sizeof(memory) - c8const::PROGRAM_START_ADDR) {
             throw std::runtime_error("Not enough space in memory!");
         }
 
@@ -102,7 +98,7 @@ void Chip8::loadROM(const std::string& message) {
         }
 
         // Read file content
-        if (!inputFile.read(reinterpret_cast<char*>(memory + offset), length)) {
+        if (!inputFile.read(reinterpret_cast<char*>(memory + c8const::PROGRAM_START_ADDR), length)) {
             throw std::runtime_error("Failed to read file: " + fileName);
         }
 
@@ -123,6 +119,12 @@ void Chip8::emulationCycle() {
         
     fetchOpcode();
     decodeOpcode();
+
+    if (sound_timer > 0) {
+        audio_device.startBeep();
+    } else {
+        audio_device.stopBeep();
+    }
 }
 
 void Chip8::fetchOpcode() {
@@ -225,19 +227,19 @@ void Chip8::executeSI(unsigned short opInstruction) {
         case 0x00E0:
             graphics::clearScreen();
             graphics::clearBuffer();
-            pc += 2;
         break;
 
         // RET - 00EE : Return from subroutine
         case 0x00EE:
             pc = stack[sp];
             sp -= 1;
-            pc += 2;
         break;
 
         default:
             printf("Unknown opcode 0: 0x%X\n", opcode);
     }
+
+    pc += 2;
 }
 
 void Chip8::executeJMP(unsigned short opInstruction) {
@@ -442,7 +444,6 @@ void Chip8::executeRAN(unsigned short opInstruction) {
     auto random = rand() % 256;
     V[x] = random & kk;
     pc += 2;
-
 }
 
 void Chip8::executeDR(unsigned short opInstruction) {
@@ -475,10 +476,12 @@ void Chip8::executeDR(unsigned short opInstruction) {
 }
 
 void Chip8::executeKII(unsigned short opInstruction) {
+    unsigned char x = (opInstruction & 0x0F00) >> 8;
+
     switch (opInstruction & 0x00FF) {
         // Ex9E - SKP Vx : Skip next instruction if key with the value of Vx is pressed.
-        case 0x00E9:
-            if (key[V[(opInstruction & 0x0F00) >> 8]]) {
+        case 0x009E:
+            if (key[V[x]]) {
                 pc += 4;
             } else {
                 pc += 2;
@@ -487,7 +490,7 @@ void Chip8::executeKII(unsigned short opInstruction) {
 
         // ExA1 - SKNP Vx : Skip next instruction if key with the value of Vx is not pressed.
         case 0x00A1:
-            if (!key[V[(opInstruction & 0x0F00) >> 8]]) {
+            if (!key[V[x]]) {
                 pc += 4;
             } else {
                 pc += 2;
@@ -500,20 +503,20 @@ void Chip8::executeKII(unsigned short opInstruction) {
 }
 
 void Chip8::executeMISC(unsigned short opInstruction) {
+    unsigned char x = (opInstruction & 0x0F00) >> 8;
+
     switch (opInstruction & 0x00FF) {
         case 0x0007:
             // Fx07 - LD Vx, DT : Set Vx = delay timer value.
-            V[(opInstruction & 0x0F00) >> 8] = delay_timer;
-            pc += 2;
+            V[x] = delay_timer;
         break;
 
         case 0x000A:
             // Fx0A - LD Vx, K : Wait for a key press, store the value of the key in Vx.
             if (key_wait_buffer != KEY_WAIT_BUFFER_EMPTY) {
-                V[(opInstruction & 0x0F00) >> 8] = key_wait_buffer;
+                V[x] = key_wait_buffer;
                 key_wait_flag = false;
                 key_wait_buffer = KEY_WAIT_BUFFER_EMPTY;
-                pc += 2;
             } else {
                 key_wait_flag = true;
             }
@@ -521,52 +524,51 @@ void Chip8::executeMISC(unsigned short opInstruction) {
 
         case 0x0015:
             // Fx15 - LD DT, Vx : Set delay timer = Vx.
-            delay_timer = V[(opInstruction & 0x0F00) >> 8];
-            pc += 2;
+            delay_timer = V[x];
         break;
 
         case 0x0018:
             // Fx18 - LD ST, Vx : Set sound timer = Vx.
-            sound_timer = V[(opInstruction & 0x0F00) >> 8];
-            pc += 2;
+            sound_timer = V[x];
         break;
 
         case 0x001E:
             // Fx1E - ADD I, Vx : Set I = I + Vx.
-            I += V[(opInstruction & 0x0F00) >> 8];
-            pc += 2;
+            I += V[x];
         break;
 
         case 0x0029:
             // Fx29 - LD F, Vx : Set I = location of sprite for digit Vx.
-            I = (V[(opInstruction & 0x0F00) >> 8] & 0x0F) * 0x5;
-            pc += 2;
+            I = (V[x] & 0x0F) * 0x5;
         break;
 
         case 0x0033:
             // Fx33 - LD B, Vx : Store BCD representation of Vx in memory locations I, I+1, and I+2.
-            memory[I] = V[(opInstruction & 0x0F00) >> 8] / 100;
-            memory[I + 1] = (V[(opInstruction & 0x0F00) >> 8] / 10) % 10;
-            memory[I + 2] = V[(opInstruction & 0x0F00) >> 8] % 10;
-            pc += 2;
+            memory[I] = V[x] / 100;
+            memory[I + 1] = (V[x] / 10) % 10;
+            memory[I + 2] = V[x] % 10;
         break;
 
         case 0x0055:
             // Fx55 - LD [I], Vx : Store registers V0 through Vx in memory starting at location I.
-            for (int i = 0; i <= ((opInstruction & 0x0F00) >> 8); i++) {
+            for (int i = 0; i <= x; i++) {
                 memory[I + i] = V[i];
             }
-            pc += 2;
         break;
 
         case 0x0065:
             // Fx65 - LD Vx, [I] : Read registers V0 through Vx from memory starting at location I.
-            for (int i = 0; i <= ((opInstruction & 0x0F00) >> 8); i++) {
+            for (int i = 0; i <= x; i++) {
                 V[i] = memory[I + i];
             }
-            pc += 2;
+        break;
+
         default:
             printf("Unknown opcode F: 0x%X\n", opcode);
+    }
+
+    if (!key_wait_flag) {
+        pc += 2;
     }
 }
 

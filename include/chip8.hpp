@@ -1,5 +1,7 @@
 #pragma once
 
+#include "audio.hpp"
+
 #include <string>
 
 class Chip8 {
@@ -33,6 +35,9 @@ private:
     // Timer registers that countdown
     unsigned char delay_timer;
     unsigned char sound_timer;
+
+    // Audio device for beeping sound
+    AudioDevice audio_device = AudioDevice();
 
     // Store return address of subroutines
     unsigned short stack[16];
