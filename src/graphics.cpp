@@ -7,10 +7,13 @@ namespace graphics {
         SDL_Window* window = nullptr;
         SDL_Renderer* renderer = nullptr;
     }
+
+    unsigned char gfx[C8_SCREEN_HEIGHT][C8_SCREEN_WIDTH] = {0};
 }
 
 
 void graphics::initializeGraphics() {
+
     if (SDL_Init(SDL_INIT_VIDEO)) {
         std::cerr << "SDL initialization failed: " << SDL_GetError() << std::endl;
         return;
@@ -34,6 +37,11 @@ void graphics::destroyGraphics() {
 void graphics::clearScreen() {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
+}
+
+// Clears all sprite on screen
+void graphics::clearBuffer() {
+    memset(gfx, 0, sizeof(gfx));
 }
 
 void graphics::drawScreen() {

@@ -181,6 +181,30 @@ uninstall/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/uninstall.dir/build.make _deps/sdl2-build/CMakeFiles/uninstall.dir/build
 .PHONY : uninstall/fast
 
+src/audio.o: src/audio.cpp.o
+.PHONY : src/audio.o
+
+# target to build an object file
+src/audio.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Chip-8_emulator.dir/build.make CMakeFiles/Chip-8_emulator.dir/src/audio.cpp.o
+.PHONY : src/audio.cpp.o
+
+src/audio.i: src/audio.cpp.i
+.PHONY : src/audio.i
+
+# target to preprocess a source file
+src/audio.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Chip-8_emulator.dir/build.make CMakeFiles/Chip-8_emulator.dir/src/audio.cpp.i
+.PHONY : src/audio.cpp.i
+
+src/audio.s: src/audio.cpp.s
+.PHONY : src/audio.s
+
+# target to generate assembly for a file
+src/audio.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Chip-8_emulator.dir/build.make CMakeFiles/Chip-8_emulator.dir/src/audio.cpp.s
+.PHONY : src/audio.cpp.s
+
 src/chip8.o: src/chip8.cpp.o
 .PHONY : src/chip8.o
 
@@ -229,30 +253,6 @@ src/graphics.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Chip-8_emulator.dir/build.make CMakeFiles/Chip-8_emulator.dir/src/graphics.cpp.s
 .PHONY : src/graphics.cpp.s
 
-src/inputs.o: src/inputs.cpp.o
-.PHONY : src/inputs.o
-
-# target to build an object file
-src/inputs.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Chip-8_emulator.dir/build.make CMakeFiles/Chip-8_emulator.dir/src/inputs.cpp.o
-.PHONY : src/inputs.cpp.o
-
-src/inputs.i: src/inputs.cpp.i
-.PHONY : src/inputs.i
-
-# target to preprocess a source file
-src/inputs.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Chip-8_emulator.dir/build.make CMakeFiles/Chip-8_emulator.dir/src/inputs.cpp.i
-.PHONY : src/inputs.cpp.i
-
-src/inputs.s: src/inputs.cpp.s
-.PHONY : src/inputs.s
-
-# target to generate assembly for a file
-src/inputs.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Chip-8_emulator.dir/build.make CMakeFiles/Chip-8_emulator.dir/src/inputs.cpp.s
-.PHONY : src/inputs.cpp.s
-
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -290,15 +290,15 @@ help:
 	@echo "... Chip-8_emulator"
 	@echo "... SDL2-static"
 	@echo "... SDL2main"
+	@echo "... src/audio.o"
+	@echo "... src/audio.i"
+	@echo "... src/audio.s"
 	@echo "... src/chip8.o"
 	@echo "... src/chip8.i"
 	@echo "... src/chip8.s"
 	@echo "... src/graphics.o"
 	@echo "... src/graphics.i"
 	@echo "... src/graphics.s"
-	@echo "... src/inputs.o"
-	@echo "... src/inputs.i"
-	@echo "... src/inputs.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

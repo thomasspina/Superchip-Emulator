@@ -72,10 +72,24 @@ include CMakeFiles/Chip-8_emulator.dir/flags.make
 CMakeFiles/Chip-8_emulator.dir/codegen:
 .PHONY : CMakeFiles/Chip-8_emulator.dir/codegen
 
+CMakeFiles/Chip-8_emulator.dir/src/audio.cpp.o: CMakeFiles/Chip-8_emulator.dir/flags.make
+CMakeFiles/Chip-8_emulator.dir/src/audio.cpp.o: /Users/thomas/code/chip-8_emulator/src/audio.cpp
+CMakeFiles/Chip-8_emulator.dir/src/audio.cpp.o: CMakeFiles/Chip-8_emulator.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/thomas/code/chip-8_emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Chip-8_emulator.dir/src/audio.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Chip-8_emulator.dir/src/audio.cpp.o -MF CMakeFiles/Chip-8_emulator.dir/src/audio.cpp.o.d -o CMakeFiles/Chip-8_emulator.dir/src/audio.cpp.o -c /Users/thomas/code/chip-8_emulator/src/audio.cpp
+
+CMakeFiles/Chip-8_emulator.dir/src/audio.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Chip-8_emulator.dir/src/audio.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/thomas/code/chip-8_emulator/src/audio.cpp > CMakeFiles/Chip-8_emulator.dir/src/audio.cpp.i
+
+CMakeFiles/Chip-8_emulator.dir/src/audio.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Chip-8_emulator.dir/src/audio.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/thomas/code/chip-8_emulator/src/audio.cpp -o CMakeFiles/Chip-8_emulator.dir/src/audio.cpp.s
+
 CMakeFiles/Chip-8_emulator.dir/src/chip8.cpp.o: CMakeFiles/Chip-8_emulator.dir/flags.make
 CMakeFiles/Chip-8_emulator.dir/src/chip8.cpp.o: /Users/thomas/code/chip-8_emulator/src/chip8.cpp
 CMakeFiles/Chip-8_emulator.dir/src/chip8.cpp.o: CMakeFiles/Chip-8_emulator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/thomas/code/chip-8_emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Chip-8_emulator.dir/src/chip8.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/thomas/code/chip-8_emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Chip-8_emulator.dir/src/chip8.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Chip-8_emulator.dir/src/chip8.cpp.o -MF CMakeFiles/Chip-8_emulator.dir/src/chip8.cpp.o.d -o CMakeFiles/Chip-8_emulator.dir/src/chip8.cpp.o -c /Users/thomas/code/chip-8_emulator/src/chip8.cpp
 
 CMakeFiles/Chip-8_emulator.dir/src/chip8.cpp.i: cmake_force
@@ -89,7 +103,7 @@ CMakeFiles/Chip-8_emulator.dir/src/chip8.cpp.s: cmake_force
 CMakeFiles/Chip-8_emulator.dir/src/graphics.cpp.o: CMakeFiles/Chip-8_emulator.dir/flags.make
 CMakeFiles/Chip-8_emulator.dir/src/graphics.cpp.o: /Users/thomas/code/chip-8_emulator/src/graphics.cpp
 CMakeFiles/Chip-8_emulator.dir/src/graphics.cpp.o: CMakeFiles/Chip-8_emulator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/thomas/code/chip-8_emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Chip-8_emulator.dir/src/graphics.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/thomas/code/chip-8_emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Chip-8_emulator.dir/src/graphics.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Chip-8_emulator.dir/src/graphics.cpp.o -MF CMakeFiles/Chip-8_emulator.dir/src/graphics.cpp.o.d -o CMakeFiles/Chip-8_emulator.dir/src/graphics.cpp.o -c /Users/thomas/code/chip-8_emulator/src/graphics.cpp
 
 CMakeFiles/Chip-8_emulator.dir/src/graphics.cpp.i: cmake_force
@@ -99,20 +113,6 @@ CMakeFiles/Chip-8_emulator.dir/src/graphics.cpp.i: cmake_force
 CMakeFiles/Chip-8_emulator.dir/src/graphics.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Chip-8_emulator.dir/src/graphics.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/thomas/code/chip-8_emulator/src/graphics.cpp -o CMakeFiles/Chip-8_emulator.dir/src/graphics.cpp.s
-
-CMakeFiles/Chip-8_emulator.dir/src/inputs.cpp.o: CMakeFiles/Chip-8_emulator.dir/flags.make
-CMakeFiles/Chip-8_emulator.dir/src/inputs.cpp.o: /Users/thomas/code/chip-8_emulator/src/inputs.cpp
-CMakeFiles/Chip-8_emulator.dir/src/inputs.cpp.o: CMakeFiles/Chip-8_emulator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/thomas/code/chip-8_emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Chip-8_emulator.dir/src/inputs.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Chip-8_emulator.dir/src/inputs.cpp.o -MF CMakeFiles/Chip-8_emulator.dir/src/inputs.cpp.o.d -o CMakeFiles/Chip-8_emulator.dir/src/inputs.cpp.o -c /Users/thomas/code/chip-8_emulator/src/inputs.cpp
-
-CMakeFiles/Chip-8_emulator.dir/src/inputs.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Chip-8_emulator.dir/src/inputs.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/thomas/code/chip-8_emulator/src/inputs.cpp > CMakeFiles/Chip-8_emulator.dir/src/inputs.cpp.i
-
-CMakeFiles/Chip-8_emulator.dir/src/inputs.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Chip-8_emulator.dir/src/inputs.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/thomas/code/chip-8_emulator/src/inputs.cpp -o CMakeFiles/Chip-8_emulator.dir/src/inputs.cpp.s
 
 CMakeFiles/Chip-8_emulator.dir/src/main.cpp.o: CMakeFiles/Chip-8_emulator.dir/flags.make
 CMakeFiles/Chip-8_emulator.dir/src/main.cpp.o: /Users/thomas/code/chip-8_emulator/src/main.cpp
@@ -130,17 +130,17 @@ CMakeFiles/Chip-8_emulator.dir/src/main.cpp.s: cmake_force
 
 # Object files for target Chip-8_emulator
 Chip__8_emulator_OBJECTS = \
+"CMakeFiles/Chip-8_emulator.dir/src/audio.cpp.o" \
 "CMakeFiles/Chip-8_emulator.dir/src/chip8.cpp.o" \
 "CMakeFiles/Chip-8_emulator.dir/src/graphics.cpp.o" \
-"CMakeFiles/Chip-8_emulator.dir/src/inputs.cpp.o" \
 "CMakeFiles/Chip-8_emulator.dir/src/main.cpp.o"
 
 # External object files for target Chip-8_emulator
 Chip__8_emulator_EXTERNAL_OBJECTS =
 
+bin/Chip-8_emulator: CMakeFiles/Chip-8_emulator.dir/src/audio.cpp.o
 bin/Chip-8_emulator: CMakeFiles/Chip-8_emulator.dir/src/chip8.cpp.o
 bin/Chip-8_emulator: CMakeFiles/Chip-8_emulator.dir/src/graphics.cpp.o
-bin/Chip-8_emulator: CMakeFiles/Chip-8_emulator.dir/src/inputs.cpp.o
 bin/Chip-8_emulator: CMakeFiles/Chip-8_emulator.dir/src/main.cpp.o
 bin/Chip-8_emulator: CMakeFiles/Chip-8_emulator.dir/build.make
 bin/Chip-8_emulator: _deps/sdl2-build/libSDL2d.a

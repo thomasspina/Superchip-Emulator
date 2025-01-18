@@ -1,6 +1,12 @@
 [
 {
   "directory": "/Users/thomas/code/chip-8_emulator/build",
+  "command": "/usr/bin/clang++ -DGL_SILENCE_DEPRECATION -I/Users/thomas/code/chip-8_emulator/include -I/Users/thomas/code/chip-8_emulator/src -isystem /Users/thomas/code/chip-8_emulator/build/_deps/sdl2-build/include -isystem /Users/thomas/code/chip-8_emulator/build/_deps/sdl2-build/include/SDL2 -isystem /Users/thomas/code/chip-8_emulator/build/_deps/sdl2-build/include-config-debug/SDL2 -g -std=gnu++2b -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -mmacosx-version-min=15.1 -Wno-deprecated-declarations -o CMakeFiles/Chip-8_emulator.dir/src/audio.cpp.o -c /Users/thomas/code/chip-8_emulator/src/audio.cpp",
+  "file": "/Users/thomas/code/chip-8_emulator/src/audio.cpp",
+  "output": "CMakeFiles/Chip-8_emulator.dir/src/audio.cpp.o"
+},
+{
+  "directory": "/Users/thomas/code/chip-8_emulator/build",
   "command": "/usr/bin/clang++ -DGL_SILENCE_DEPRECATION -I/Users/thomas/code/chip-8_emulator/include -I/Users/thomas/code/chip-8_emulator/src -isystem /Users/thomas/code/chip-8_emulator/build/_deps/sdl2-build/include -isystem /Users/thomas/code/chip-8_emulator/build/_deps/sdl2-build/include/SDL2 -isystem /Users/thomas/code/chip-8_emulator/build/_deps/sdl2-build/include-config-debug/SDL2 -g -std=gnu++2b -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -mmacosx-version-min=15.1 -Wno-deprecated-declarations -o CMakeFiles/Chip-8_emulator.dir/src/chip8.cpp.o -c /Users/thomas/code/chip-8_emulator/src/chip8.cpp",
   "file": "/Users/thomas/code/chip-8_emulator/src/chip8.cpp",
   "output": "CMakeFiles/Chip-8_emulator.dir/src/chip8.cpp.o"
@@ -10,12 +16,6 @@
   "command": "/usr/bin/clang++ -DGL_SILENCE_DEPRECATION -I/Users/thomas/code/chip-8_emulator/include -I/Users/thomas/code/chip-8_emulator/src -isystem /Users/thomas/code/chip-8_emulator/build/_deps/sdl2-build/include -isystem /Users/thomas/code/chip-8_emulator/build/_deps/sdl2-build/include/SDL2 -isystem /Users/thomas/code/chip-8_emulator/build/_deps/sdl2-build/include-config-debug/SDL2 -g -std=gnu++2b -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -mmacosx-version-min=15.1 -Wno-deprecated-declarations -o CMakeFiles/Chip-8_emulator.dir/src/graphics.cpp.o -c /Users/thomas/code/chip-8_emulator/src/graphics.cpp",
   "file": "/Users/thomas/code/chip-8_emulator/src/graphics.cpp",
   "output": "CMakeFiles/Chip-8_emulator.dir/src/graphics.cpp.o"
-},
-{
-  "directory": "/Users/thomas/code/chip-8_emulator/build",
-  "command": "/usr/bin/clang++ -DGL_SILENCE_DEPRECATION -I/Users/thomas/code/chip-8_emulator/include -I/Users/thomas/code/chip-8_emulator/src -isystem /Users/thomas/code/chip-8_emulator/build/_deps/sdl2-build/include -isystem /Users/thomas/code/chip-8_emulator/build/_deps/sdl2-build/include/SDL2 -isystem /Users/thomas/code/chip-8_emulator/build/_deps/sdl2-build/include-config-debug/SDL2 -g -std=gnu++2b -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -mmacosx-version-min=15.1 -Wno-deprecated-declarations -o CMakeFiles/Chip-8_emulator.dir/src/inputs.cpp.o -c /Users/thomas/code/chip-8_emulator/src/inputs.cpp",
-  "file": "/Users/thomas/code/chip-8_emulator/src/inputs.cpp",
-  "output": "CMakeFiles/Chip-8_emulator.dir/src/inputs.cpp.o"
 },
 {
   "directory": "/Users/thomas/code/chip-8_emulator/build",
