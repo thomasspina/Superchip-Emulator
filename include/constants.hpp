@@ -6,12 +6,11 @@
 #define C8_SCREEN_HEIGHT 32
 #define C8_SCREEN_SCALE 10
 
-#define TIMER_HZ 60.0
-#define EMULATOR_CYCLE_HZ 500.0
-
 #define KEY_WAIT_BUFFER_EMPTY 0x10
 
 namespace c8const {
+    constexpr float TIMER_FREQ = 1 / 60.0;
+    constexpr float EMULATOR_FREQ = 1 / 500.0;
 
     constexpr unsigned char chip8_fontset[80] = 
     { 

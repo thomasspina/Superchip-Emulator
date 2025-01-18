@@ -75,7 +75,7 @@ void Chip8::setKeyState(const unsigned char& key_id, const unsigned char& state)
 void Chip8::loadROM(const std::string& message) {
     try {
         // Construct the filename and path 
-        const std::string fileName = "../games/" + message + ".ch8"; // TODO: Provide better path?
+        const std::string fileName = "../games/" + message + ".c8"; // TODO: Provide better path?
         const std::filesystem::path inputFilePath{fileName};
 
         std::cout << "Attempting to load ROM from: " << inputFilePath << std::endl;
@@ -123,8 +123,6 @@ void Chip8::emulationCycle() {
         
     fetchOpcode();
     decodeOpcode();
-
-    // TODO: Update Timer
 }
 
 void Chip8::fetchOpcode() {
@@ -224,14 +222,17 @@ void Chip8::decodeOpcode() {
 void Chip8::executeSI(unsigned short opInstruction) {
     switch(opInstruction & 0x00FF) {
         // CLS - 00E0 : CLear display
-        case 0x00EE:
-            // TODO : Clear display
+        case 0x00E0:
+            graphics::clearScreen();
+            graphics::clearBuffer();
+            pc += 2;
         break;
 
         // RET - 00EE : Return from subroutine
-        case 0x00E0:
+        case 0x00EE:
             pc = stack[sp];
             sp -= 1;
+            pc += 2;
         break;
 
         default:
@@ -257,6 +258,8 @@ void Chip8::executeSE(unsigned short opInstruction) {
     unsigned char kk = (opInstruction & 0X00FF);
 
     if (V[x] == kk) {
+        pc += 4;
+    } else {
         pc += 2;
     }
 }
@@ -267,6 +270,8 @@ void Chip8::executeSNE(unsigned short opInstruction) {
     unsigned char kk = (opInstruction & 0X00FF);
 
     if (V[x] != kk) {
+        pc += 4;
+    } else {
         pc += 2;
     }
 }
@@ -277,6 +282,8 @@ void Chip8::executeSRE(unsigned short opInstruction) {
     unsigned char y = (opInstruction & 0X00F0) >> 4;
 
     if (V[x] == V[y]) {
+        pc += 4;
+    } else {
         pc += 2;
     }
 }
@@ -307,7 +314,7 @@ void Chip8::executeAL(unsigned short opInstruction) {
     switch (opInstruction & 0x000F) {
         case 0x0000:
             // LD Vx, Vy - 8xy0 : Stores the value of register Vy in register Vx
-            V[x] += V[y];
+            V[x] = V[y];
         break;
 
         case 0x0001:
@@ -407,6 +414,8 @@ void Chip8::executeSRNE(unsigned short opInstruction) {
     unsigned char y = (opInstruction & 0X00F0) >> 4;
 
     if (V[x] != V[y]) {
+        pc += 4;
+    } else {
         pc += 2;
     }
 }
@@ -447,7 +456,7 @@ void Chip8::executeDR(unsigned short opInstruction) {
     unsigned short line;
 
     V[0xF] = 0;
-    for (int row = 0; row < h; y++) { // check every byte of the sprite
+    for (int row = 0; row < h; row++) { // check every byte of the sprite
         
         line = memory[I + row]; // byte (line of 8 pixels)
         for (int col = 0; col < 8; col++) {
@@ -486,7 +495,7 @@ void Chip8::executeKII(unsigned short opInstruction) {
         break;
 
         default:
-        break;
+            printf("Unknown opcode E: 0x%X\n", opcode);
     }
 }
 
@@ -557,7 +566,7 @@ void Chip8::executeMISC(unsigned short opInstruction) {
             }
             pc += 2;
         default:
-        break;
+            printf("Unknown opcode F: 0x%X\n", opcode);
     }
 }
 

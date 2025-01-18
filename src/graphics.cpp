@@ -39,6 +39,11 @@ void graphics::clearScreen() {
     SDL_RenderClear(renderer);
 }
 
+// Clears all sprite on screen
+void graphics::clearBuffer() {
+    memset(gfx, 0, sizeof(gfx));
+}
+
 void graphics::drawScreen() {
     clearScreen();
     
