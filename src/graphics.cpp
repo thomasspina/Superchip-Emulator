@@ -51,6 +51,8 @@ void graphics::drawScreen() {
     
     for (int i = 0; i < C8_SCREEN_HEIGHT; i++) {
         for (int j = 0; j < C8_SCREEN_WIDTH; j++) {
+
+            // Render a pixel at (j, i) as white if gfx[i][j] is non-zero
             if (gfx[i][j]) {
                 SDL_RenderDrawPoint(renderer, j, i);
             }

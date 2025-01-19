@@ -233,6 +233,9 @@ void Chip8::executeSI(unsigned short opInstruction) {
 
         // RET - 00EE : Return from subroutine
         case 0x00EE:
+            if (sp == 0) {
+                throw std::runtime_error("stack pointer underflow!");
+            }
             pc = stack[sp];
             sp -= 1;
         break;
@@ -252,6 +255,11 @@ void Chip8::executeJMP(unsigned short opInstruction) {
 void Chip8::executeSRC(unsigned short opInstruction) {
     // CALL addr - 2nnn : Call subroutine at nnn
     sp += 1;
+
+    if (sp > 15) {
+        throw std::runtime_error("stack pointer underflow!");
+    }
+
     stack[sp] = pc;
     pc = opInstruction & 0x0FFF;
 }
