@@ -39,10 +39,16 @@ The emulator has a 64x32 display, which isn't much. So in this rendition of the 
 ```
 ##### Keyboard
 The Chip8 system uses a 4x4 button pad which we mapped the following way onto the keyboard.
-|1|2|3|C|          |1|2|3|4|
-|4|5|6|D|    =>    |Q|W|E|R|   
-|7|8|9|E|          |A|S|D|F|
-|A|0|B|F|          |Z|X|C|V|
+Keypad                  Keyboard
++-+-+-+-+              +-+-+-+-+
+|1|2|3|C|      =>      |1|2|3|4|
++-+-+-+-+              +-+-+-+-+
+|4|5|6|D|      =>      |Q|W|E|R|
++-+-+-+-+              +-+-+-+-+
+|7|8|9|E|      =>      |A|S|D|F|
++-+-+-+-+              +-+-+-+-+
+|A|0|B|F|      =>      |Z|X|C|V|
++-+-+-+-+              +-+-+-+-+
 #### Features
 The project has comes with multiple games, the default one that is loaded is tetris. To change games, the game title must be changed in the [constants](include/constants.hpp) file.
 To do so simply change this line at the beginning of the file 
