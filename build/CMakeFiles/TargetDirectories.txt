@@ -1,9 +1,0 @@
-C:/Code Data/chip-8_emulator/build/CMakeFiles/Chip-8_emulator.dir
-C:/Code Data/chip-8_emulator/build/CMakeFiles/edit_cache.dir
-C:/Code Data/chip-8_emulator/build/CMakeFiles/rebuild_cache.dir
-C:/Code Data/chip-8_emulator/build/_deps/sdl2-build/CMakeFiles/sdl_headers_copy.dir
-C:/Code Data/chip-8_emulator/build/_deps/sdl2-build/CMakeFiles/SDL2main.dir
-C:/Code Data/chip-8_emulator/build/_deps/sdl2-build/CMakeFiles/SDL2-static.dir
-C:/Code Data/chip-8_emulator/build/_deps/sdl2-build/CMakeFiles/uninstall.dir
-C:/Code Data/chip-8_emulator/build/_deps/sdl2-build/CMakeFiles/edit_cache.dir
-C:/Code Data/chip-8_emulator/build/_deps/sdl2-build/CMakeFiles/rebuild_cache.dir

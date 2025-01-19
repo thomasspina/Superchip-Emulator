@@ -1,3 +1,0 @@
-"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\Chip-8_emulator.dir/objects.a
-C:\msys64\ucrt64\bin\ar.exe qc CMakeFiles\Chip-8_emulator.dir/objects.a @CMakeFiles\Chip-8_emulator.dir\objects1.rsp
-C:\msys64\ucrt64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\Chip-8_emulator.dir/objects.a -Wl,--no-whole-archive -o bin\Chip-8_emulator.exe -Wl,--out-implib,libChip-8_emulator.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Chip-8_emulator.dir\linkLibs.rsp
