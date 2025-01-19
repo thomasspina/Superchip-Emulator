@@ -26,7 +26,7 @@ target_link_libraries(Chip-8_emulator PRIVATE
     SDL2::SDL2main
 )
 
-set(GAMES_PATH "${CMAKE_CURRENT_SOURCE_DIR}/games")
+set(GAMES_PATH "${CMAKE_CURRENT_SOURCE_DIR}/games/")
 configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/config.h.in
     ${CMAKE_BINARY_DIR}/config.h
@@ -37,7 +37,6 @@ target_include_directories(Chip-8_emulator
         ${CMAKE_CURRENT_SOURCE_DIR}/include
         ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${CMAKE_BINARY_DIR}
-
 )
 
 target_compile_features(Chip-8_emulator PRIVATE cxx_std_23)
