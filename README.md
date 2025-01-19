@@ -21,6 +21,7 @@ This project showcases a Chip8 emulator to run simple retro games and acts as a 
 
 ## Demo
 ### Breakout 
+![breakout](https://github.com/user-attachments/assets/91e574aa-d5bc-457a-b6b9-80bf8166a8ff)
 ### Space Invaders
 ![invaders](https://github.com/user-attachments/assets/8b2cbe0e-da3d-4e3d-9c09-6ad972c373a3)
 ### Pong2
