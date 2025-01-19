@@ -45,12 +45,16 @@ CHIP-8 Keyboard
 | 4 | 5 | 6 | D |
 | 7 | 8 | 9 | E |
 | A | 0 | B | F |
+|---|---|---|---|
+
+
 Interpreter Keyboard
 | 1 | 2 | 3 | 4 |
 |---|---|---|---|
 | Q | W | E | R |
 | A | S | D | F |
 | Z | X | C | V |
+|---|---|---|---|
 #### Features
 The project has comes with multiple games, the default one that is loaded is tetris. To change games, the game title must be changed in the [constants](include/constants.hpp) file.
 To do so simply change this line at the beginning of the file 
