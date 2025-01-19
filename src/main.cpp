@@ -1,10 +1,10 @@
 #include "chip8.hpp"
 #include "graphics.hpp"
-
+// #include <SDL2\SDL.h>
 #include <chrono>
 #include <iostream>
 
-int main() {
+int main(int argc, char* argv[]) {
     // init Chip8
     Chip8 emulator = Chip8();
 
@@ -13,7 +13,7 @@ int main() {
     graphics::clearScreen();
 
     // load ROM for games
-    emulator.loadROM("pong2");
+    emulator.loadROM("flightrunner");
     
     bool quit = false;
     unsigned char key_id;

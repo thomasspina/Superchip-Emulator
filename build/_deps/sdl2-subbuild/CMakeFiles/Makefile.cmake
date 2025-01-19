@@ -10,10 +10,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.31.0-rc2/CMakeSystem.cmake"
   "CMakeLists.txt"
   "sdl2-populate-prefix/tmp/sdl2-populate-mkdirs.cmake"
-  "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineSystem.cmake"
   "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeGenericSystem.cmake"
   "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeInitializeConfigs.cmake"
-  "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeSystem.cmake.in"
   "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeSystemSpecificInformation.cmake"
   "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeSystemSpecificInitialize.cmake"
   "C:/Program Files/CMake/share/cmake-3.31/Modules/ExternalProject.cmake"
@@ -38,7 +36,6 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
-  "CMakeFiles/3.31.0-rc2/CMakeSystem.cmake"
   "sdl2-populate-prefix/tmp/sdl2-populate-mkdirs.cmake"
   "sdl2-populate-prefix/tmp/sdl2-populate-gitclone.cmake"
   "sdl2-populate-prefix/src/sdl2-populate-stamp/sdl2-populate-gitinfo.txt"
