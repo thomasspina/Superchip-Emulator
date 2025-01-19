@@ -372,6 +372,14 @@ void Chip8::executeAL(unsigned short opInstruction) {
             V[x] -= V[y];
         break;
 
+        //   // OLD SHIFT BEHAVIOR: shift VY, store in VX
+        // case 0x0006: // SHR Vx {, Vy} (old quirk)
+        //     // VF = LSB of Vy
+        //     V[0xF] = (V[y] & 0x01);
+        //     // Now shift Vy, store result in Vx
+        //     V[x] = V[y] >> 1;
+        //     break;
+
         case 0x0006:
             // SHR Vx {, Vy} - 8xy6 : If the least-significant bit of Vx is 1, then VF is set to 1, 
             // otherwise 0. Then Vx is divided by 2.
@@ -397,6 +405,13 @@ void Chip8::executeAL(unsigned short opInstruction) {
 
             V[x] = V[y] - V[x];
         break;  
+
+        // case 0x000E: // SHL Vx {, Vy} (old quirk)
+        //     // VF = MSB of Vy
+        //     V[0xF] = (V[y] & 0x80) >> 7;
+        //     // Shift Vy left, store result in Vx
+        //     V[x] = V[y] << 1;
+        // break;
 
         case 0x000E:
             // SHL Vx {, Vy} - 8xyE : If the most-significant bit of Vx is 1, 
@@ -467,16 +482,18 @@ void Chip8::executeDR(unsigned short opInstruction) {
     unsigned short line;
 
     V[0xF] = 0;
-    for (int row = 0; row < h; row++) { // check every byte of the sprite
-        
-        line = memory[I + row]; // byte (line of 8 pixels)
+    for (int row = 0; row < h; row++) {
+        line = memory[I + row];
         for (int col = 0; col < 8; col++) {
+            if ((line & (0x80 >> col)) != 0) {
+                // Ensures x and y coordinate wraps around when out of bounds
+                int wrappedX = (x + col) % 64;  
+                int wrappedY = (y + row) % 32;  
 
-            if ((line & (0x80 >> col)) != 0) { // check pixel state
-
-                if (graphics::gfx[y + row][x + col]) { V[0xF] = 1; }
-
-                graphics::gfx[y + row][x + col] ^= 1;
+                if (graphics::gfx[wrappedY][wrappedX]) {
+                    V[0xF] = 1;
+                }
+                graphics::gfx[wrappedY][wrappedX] ^= 1; // XOR draw
             }
         }
     }
@@ -542,8 +559,17 @@ void Chip8::executeMISC(unsigned short opInstruction) {
             sound_timer = V[x];
         break;
 
+        // case 0x001E:
+        //     // Fx1E - ADD I, Vx : Set I = I + Vx.
+        //     I += V[x];
+        // break;
+        
         case 0x001E:
-            // Fx1E - ADD I, Vx : Set I = I + Vx.
+            if (I + V[x] > 0xFFF) {
+                V[0xF] = 1;
+            } else {
+                V[0xF] = 0;
+            }
             I += V[x];
         break;
 
@@ -559,12 +585,28 @@ void Chip8::executeMISC(unsigned short opInstruction) {
             memory[I + 2] = V[x] % 10;
         break;
 
+        // OLD behavior: increment I each time
+        // case 0x0055: // Fx55 - LD [I], V0..Vx
+        //     for (int i = 0; i <= x; i++) {
+        //         memory[I] = V[i];
+        //         I++;  // increment I after each write
+        //     }
+        // break;
+
         case 0x0055:
             // Fx55 - LD [I], Vx : Store registers V0 through Vx in memory starting at location I.
             for (int i = 0; i <= x; i++) {
                 memory[I + i] = V[i];
             }
         break;
+
+        // OLD behavior: increment I each time
+        // case 0x0065: // Fx65 - LD V0..Vx, [I]
+        //     for (int i = 0; i <= x; i++) {
+        //         V[i] = memory[I];
+        //         I++;  // increment I after each read
+        //     }
+        // break;
 
         case 0x0065:
             // Fx65 - LD Vx, [I] : Read registers V0 through Vx from memory starting at location I.
