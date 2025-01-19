@@ -24,20 +24,20 @@ This project showcases a Chip8 emulator to run simple retro games and acts as a 
 
 ## Specs and Features
 
-#### Specs
+### Specs
 The Chip8 emulator specs can all be found in the sources portion of this README. Here are just a few that are worth mentionning.
-##### Processor
+#### Processor
 The Chip8 processor has 16 8-bit registers, 4KB of RAM, and two 8-bit timers. The timers run, according to the specs, at 60 Hz. Finding the processor clock frequency though was much harder and we ended up settling on 500 Hz. This frequency can be modified in the [constants](include/constants.hpp) file by modifiying this line
 ```cpp
 constexpr float EMULATOR_FREQ = 1 / 500.0;
 ```
 this would make the emulator run faster, which could be benificial for certain games like space invaders.
-##### Graphics
+#### Graphics
 The emulator has a 64x32 display, which isn't much. So in this rendition of the emulator, the screen is scaled up by a factor of 20. This scale can be changed according to your needs by modifying the following line in the [constants](include/constants.hpp) file.
 ```cpp
 #define C8_SCREEN_SCALE 20
 ```
-##### Keyboard
+#### Keyboard
 The Chip8 system uses a 4x4 button pad which we mapped the following way onto the keyboard. <br />
 CHIP-8 Keyboard
 | 1 | 2 | 3 | C |
@@ -53,7 +53,7 @@ Interpreter Keyboard
 | Q | W | E | R |
 | A | S | D | F |
 | Z | X | C | V |
-#### Features
+### Features
 The project has comes with multiple games, the default one that is loaded is tetris. To change games, the game title must be changed in the [constants](include/constants.hpp) file.
 To do so simply change this line at the beginning of the file 
 ```cpp
