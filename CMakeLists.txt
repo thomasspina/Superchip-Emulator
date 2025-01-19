@@ -12,8 +12,8 @@ FetchContent_Declare(SDL2
     SYSTEM
 )
 
-set( SDL_STATIC ON CACHE BOOL "" FORCE ) # Build SDL as a static library
-set( SDL_SHARED OFF CACHE BOOL "" FORCE ) # Disable building SDL as a shared library
+set(SDL_STATIC ON CACHE BOOL "" FORCE) # Build SDL as a static library
+set(SDL_SHARED OFF CACHE BOOL "" FORCE) # Disable building SDL as a shared library
 set(SDL_TEST OFF CACHE BOOL "" FORCE) # Disable SDL tests
 FetchContent_MakeAvailable(SDL2)
 
@@ -26,10 +26,18 @@ target_link_libraries(Chip-8_emulator PRIVATE
     SDL2::SDL2main
 )
 
+set(GAMES_PATH "${CMAKE_CURRENT_SOURCE_DIR}/games")
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/config.h.in
+    ${CMAKE_BINARY_DIR}/config.h
+)
+
 target_include_directories(Chip-8_emulator 
     PUBLIC 
         ${CMAKE_CURRENT_SOURCE_DIR}/include
         ${CMAKE_CURRENT_SOURCE_DIR}/src
+        ${CMAKE_BINARY_DIR}
+
 )
 
 target_compile_features(Chip-8_emulator PRIVATE cxx_std_23)
