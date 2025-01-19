@@ -5,7 +5,8 @@ There are multiple games included in this project as well which were not built w
 
 ## Navigation
 - [Features](#features)
-  
+  - [Feature1](#feature1)
+  - [Feature2](#feature2)
 - [Installation](#installation)
   - [MacOS](#macos)
   - [Windows](#windows)
@@ -19,23 +20,10 @@ There are multiple games included in this project as well which were not built w
 
 The project has comes with multiple games, the default one that is loaded is tetris. To change games, the game title must be changed in the constants.hpp file.
 
-There are performance trackers at the very top, a configuration menu which handles basic simulation settings, and a rules menu which handles the weights attributed to each boid rule from the Cornell paper in the sources section. Most settings are self explanatory, for example there is a `Number of Boids` slider which adjusts the number of boids in the simulation (1000 boids should drop the framerate). Below are the less obvious settings.
-#### Neighbourhood
-You can show the neighbourhood in which the boids look for their flock neighbours using the `Show Boid Neighbourhood` checkbox. This neighbourhood radius is adjustable via the `Neighbourhood` slider.
-![neighbourhood](https://github.com/user-attachments/assets/74e32f1a-fcc0-4372-9a0c-49e503236bd5)
-#### Wandering
-For the boids to look more natural there is a wander factor in the boid movement calculation that is indepedent of its neighbours. This wander factor adds randomness to boid and flock movements. This factor can be adjusted using the `Wander Factor` slider and can be enabled or disabled with the `Enable Boid Wandering` checkbox.
-#### Grid and Screen Boundaries
-Boids get warped to the other side of the screen upon reaching the edge of the screen by default. This behaviour can be changed using the `Avoid Screen Boundary` checkbox. There is also a checkbox named `Grid` which is used to overlay a grid on the display. This grid is part of the optimization where boids will only look for boids in neighbouring grid cells to check if they are in their neighbourhood radius. 
-![avoid](https://github.com/user-attachments/assets/e2202adc-15b7-46e3-ac2c-d240da947dc2)
-#### Avoid mouse
-The `Enable Mouse Avoidance (Hold L-click)` checkbox enables or disables mouse avoidance. The boids will avoid the mouse if its near them and the user is left-clicking.
-![mouse](https://github.com/user-attachments/assets/800f8a67-2cb4-4f44-8f35-b70ad8ca5dcc)
-#### Rules 
-The three rules explained in the Cornell paper in the sources can be toyed with using the three sliders and corresponding checkboxes in the menu. Very briefly the rules are:
-* Separation: the boids avoid eachother
-* Alignment: the boids head towards the same direction when in the same flock
-* Cohesion: the boids move towards the center of the flock
+#### Feature1
+
+#### Feature2
+
 
 ## Installation
 ### MacOS
