@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
     graphics::clearScreen();
 
     // load ROM for games
-    emulator.loadROM("snek");
+    emulator.loadROM("Brix");
     
     bool quit = false;
     unsigned char key_id;
