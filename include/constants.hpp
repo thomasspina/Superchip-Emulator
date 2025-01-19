@@ -3,7 +3,7 @@
 #include <unordered_map>
 
 /* MODIFY CONSTANT BELOW TO CHANGE GAMES */
-#define GAME "tetris"
+#define GAME "Brix"
 
 
 #define C8_SCREEN_WIDTH 64

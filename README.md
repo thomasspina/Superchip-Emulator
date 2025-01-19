@@ -148,5 +148,10 @@ C++ was chosen to be the building blocks for the project because of the low leve
 As mentionned in the description, this project is a stepping stone to the Super Chip8 emulator which can emulate much more interesting games. These improvements can be made through a few extra opcodes and an improvement to the graphics and memory.
 
 ## Sources
-http://devernay.free.fr/hacks/chip8/C8TECH10.HTM - technical reference for Chip8
+Technical reference for Chip8: 
+  - https://multigesture.net/articles/how-to-write-an-emulator-chip-8-interpreter/ 
+  - http://devernay.free.fr/hacks/chip8/C8TECH10.HTM
+
+Chip8 Game Library:
+  - https://archive.org/details/chip-8-games
 

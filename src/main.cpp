@@ -37,6 +37,20 @@ int main(int argc, char* argv[]) {
                 break;
 
                 case SDL_KEYDOWN:
+
+                    // Reset on pressing ENTER
+                    if (event.key.keysym.sym == SDLK_RETURN) {
+                        std::cout << "Game reset!\n";
+
+                        // Re-initialize emulator
+                        emulator = Chip8();           
+                        graphics::clearScreen();          
+                        graphics::clearBuffer(); 
+
+                        // Reload the ROM
+                        emulator.loadROM(GAME);           
+                    }
+
                     // update emulator key buffer if keydown is on keypad
                     if (c8const::key_map.contains(*SDL_GetKeyName(event.key.keysym.sym))) {
                         key_id = c8const::key_map.at(*SDL_GetKeyName(event.key.keysym.sym));
