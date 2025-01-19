@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
     graphics::clearScreen();
 
     // load ROM for games
-    emulator.loadROM("flightrunner");
+    emulator.loadROM("pong2");
     
     bool quit = false;
     unsigned char key_id;

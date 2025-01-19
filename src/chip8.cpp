@@ -73,9 +73,11 @@ void Chip8::setKeyState(const unsigned char& key_id, const unsigned char& state)
 void Chip8::loadROM(const std::string& message) {
     try {
         // Construct the filename and path 
-        const std::string fileName = "../games/" + message + ".c8";
+        const std::string fileName = "../../games/" + message + ".c8";
         const std::filesystem::path inputFilePath{fileName};
 
+        std::cout << "Current working directory: " << std::filesystem::current_path() << std::endl;
+        std::cout << "Absolute path being checked: " << std::filesystem::absolute(inputFilePath) << std::endl;
         std::cout << "Attempting to load ROM from: " << inputFilePath << std::endl;
 
         // Check if file exists before attempting operations
