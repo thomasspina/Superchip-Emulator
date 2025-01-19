@@ -43,7 +43,7 @@ The Chip8 processor has 16 8-bit registers, 4KB of RAM, and two 8-bit timers. Th
 ```cpp
 constexpr float EMULATOR_FREQ = 1 / 500.0;
 ```
-this would make the emulator run faster, which could be benificial for certain games like space invaders.
+this would make the emulator run faster, which could be beneficial for certain games like space invaders.
 #### Graphics
 The emulator has a 64x32 display, which isn't much. So in this rendition of the emulator, the screen is scaled up by a factor of 20. This scale can be changed according to your needs by modifying the following line in the [constants](include/constants.hpp) file.
 ```cpp

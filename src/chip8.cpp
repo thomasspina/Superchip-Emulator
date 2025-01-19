@@ -27,26 +27,6 @@ Chip8::Chip8() {
     resetTimers();
 }
 
-void Chip8::reset() {
-    // Reset pointers and counters
-    pc = 0x200;
-    opcode = 0;
-    I = 0;
-    sp = 0;
-
-    // Reset flags
-    draw_flag = false;
-    key_wait_flag = false;
-
-    // Clear all components
-    clearStack();
-    clearRegisters();
-    clearMemory();
-    loadFontSet();
-    clearKeyBuffer();
-    resetTimers();
-}
-
 void Chip8::clearStack() {
     for (int i=0; i < 16; i++) {
         stack[i] = 0;

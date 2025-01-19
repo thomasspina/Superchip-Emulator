@@ -78,7 +78,6 @@ private:
 public:
     Chip8();
 
-    void reset();
     void loadROM(const std::string& message);
     void emulationCycle();
     bool getDrawFlag() const { return draw_flag; }
