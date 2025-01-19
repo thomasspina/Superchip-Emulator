@@ -73,6 +73,7 @@ void Chip8::setKeyState(const unsigned char& key_id, const unsigned char& state)
 void Chip8::loadROM(const std::string& message) {
     try {
         // Construct the filename and path 
+        // TODO: ADD DIFFERENT PATH FOR WIN AND MAC
         const std::string fileName = "../../games/" + message + ".ch8";
         const std::filesystem::path inputFilePath{fileName};
 
@@ -472,8 +473,8 @@ void Chip8::executeDR(unsigned short opInstruction) {
         for (int col = 0; col < 8; col++) {
             if ((line & (0x80 >> col)) != 0) {
                 // Ensures x and y coordinate wraps around when out of bounds
-                int wrappedX = (x + col) % 64;  
-                int wrappedY = (y + row) % 32;  
+                int wrappedX = (x + col) % C8_SCREEN_WIDTH;  
+                int wrappedY = (y + row) % C8_SCREEN_HEIGHT;  
 
                 if (graphics::gfx[wrappedY][wrappedX]) {
                     V[0xF] = 1;
