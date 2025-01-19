@@ -20,6 +20,13 @@ This project showcases a Chip8 emulator to run simple retro games and acts as a 
 - [Sources](#sources)
 
 ## Demo
+### Space Invaders
+![invaders](https://github.com/user-attachments/assets/8b2cbe0e-da3d-4e3d-9c09-6ad972c373a3)
+### Pong2
+![pong](https://github.com/user-attachments/assets/004568b1-1778-414a-b18f-361d75cf34fd)
+### Tetris
+![tetris](https://github.com/user-attachments/assets/ddf05a7e-e1db-4660-9b3d-041035659d72)
+
 
 
 ## Specs and Features
