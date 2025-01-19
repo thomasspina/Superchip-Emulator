@@ -18,7 +18,8 @@ There are multiple games included in this project as well which were not built w
 
 ## Features
 
-The project has comes with multiple games, the default one that is loaded is tetris. To change games, the game title must be changed in the constants.hpp file.
+The project has comes with multiple games, the default one that is loaded is tetris. To change games, the game title must be changed in the [constants](include/constants.hpp) file.
+To do so simply change this line at the beginning of the file ~~~#define GAME "tetris"~~~ and change tetris to one of the file names in the [games](games) folder.
 
 #### Feature1
 
