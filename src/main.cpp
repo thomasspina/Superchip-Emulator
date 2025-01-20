@@ -69,6 +69,9 @@ void mainLoop() {
     delta_acc_timer += delta_time;
     prev_time = curr_time;
 
+    static int frameCount = 0;
+    static Uint32 startTime = SDL_GetTicks();
+
     handleEvents();
 
     // Tick the internal Chip8 timers at 60 Hz
@@ -78,11 +81,16 @@ void mainLoop() {
         delta_acc_timer = 0;
     }
 
-    // Emulate a single cycle at 500 Hz
-    if (delta_acc_emulator >= c8const::EMULATOR_FREQ) {
+    
+    // Calculate how many cycles accumulated
+    int cyclesToRun = static_cast<int>(delta_acc_emulator / (c8const::EMULATOR_FREQ));
+
+    // Emulate cycles at 500 Hz
+    for (int i = 0; i < cyclesToRun; ++i) {
         emulator.emulationCycle();
-        delta_acc_emulator = 0;
     }
+
+    delta_acc_emulator -= cyclesToRun * (c8const::EMULATOR_FREQ);
 
     // Draw the screen
     if (emulator.getDrawFlag()) {
@@ -103,7 +111,7 @@ int main(int argc, char* argv[]) {
 
     #if __EMSCRIPTEN__
         // Use Emscripten's main loop
-        emscripten_set_main_loop(mainLoop, 0, 1);
+        emscripten_set_main_loop(mainLoop, 60, 1);
     #else
         // Native loop
         while (!quit) {
