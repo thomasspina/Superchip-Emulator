@@ -3,7 +3,7 @@
 #include <unordered_map>
 
 /* MODIFY CONSTANT BELOW TO CHANGE GAMES */
-#define GAME "Tetris"
+#define GAME "Brix"
 
 #define C8_SCREEN_WIDTH 64
 #define C8_SCREEN_HEIGHT 32
@@ -18,7 +18,7 @@
 
 namespace c8const {
     constexpr float TIMER_FREQ = 1 / 60.0;
-    constexpr float EMULATOR_FREQ = 1 / 500.0;
+    constexpr float EMULATOR_FREQ = 1 / 60.0;
     constexpr int PROGRAM_START_ADDR = 512;
 
     constexpr unsigned char chip8_fontset[80] = 

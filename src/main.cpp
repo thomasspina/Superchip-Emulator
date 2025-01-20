@@ -2,97 +2,115 @@
 #include "graphics.hpp"
 #include <chrono>
 #include <iostream>
+#include <emscripten.h>
 
-int main(int argc, char* argv[]) {
-    // init Chip8
-    Chip8 emulator = Chip8();
+// Global variables
+Chip8 emulator;
+bool quit = false;
+unsigned char key_id;
+SDL_Event event;
+float delta_time = 0;
+float delta_acc_emulator = 0, delta_acc_timer = 0;
+std::chrono::steady_clock::time_point curr_time, prev_time;
 
-    // initialize graphics
+void initialize() {
+    emulator = Chip8();
     graphics::initializeGraphics();
     graphics::clearScreen();
-
-    // load ROM for games
     emulator.loadROM(GAME);
-    
-    bool quit = false;
-    unsigned char key_id;
-    SDL_Event event;
-    float delta_time = 0;
-    float delta_acc_emulator = 0, delta_acc_timer = 0;
-    std::chrono::steady_clock::time_point curr_time, prev_time = std::chrono::steady_clock::now();
+    quit = false;
+    prev_time = std::chrono::steady_clock::now();
+}
 
-    // Main loop
-    while (!quit) {
-        curr_time = std::chrono::steady_clock::now();
-        delta_time = std::chrono::duration<float>(curr_time - prev_time).count();
-        delta_acc_emulator += delta_time; 
-        delta_acc_timer += delta_time;
-        prev_time = curr_time;
+void cleanup() {
+    graphics::destroyGraphics();
+}
 
-        // handle user events
-        while (SDL_PollEvent(&event)) {
-            switch (event.type) {
-                case SDL_QUIT:
-                    quit = true;
+void handleEvents() {
+    while (SDL_PollEvent(&event)) {
+        switch (event.type) {
+            case SDL_QUIT:
+                quit = true;
                 break;
 
-                case SDL_KEYDOWN:
+            case SDL_KEYDOWN:
 
-                    // Reset on pressing ENTER
-                    if (event.key.keysym.sym == SDLK_RETURN) {
-                        std::cout << "Game reset!\n";
+                // Reset on pressing ENTER
+                if (event.key.keysym.sym == SDLK_RETURN) {
+                    std::cout << "Game reset!\n";
+                    emulator = Chip8();
+                    graphics::clearScreen();
+                    graphics::clearBuffer();
+                    emulator.loadROM(GAME);
+                }
 
-                        // Re-initialize emulator
-                        emulator = Chip8();           
-                        graphics::clearScreen();          
-                        graphics::clearBuffer(); 
+                // update emulator key buffer if keydown is on keypad
+                if (c8const::key_map.contains(*SDL_GetKeyName(event.key.keysym.sym))) {
+                    key_id = c8const::key_map.at(*SDL_GetKeyName(event.key.keysym.sym));
+                    emulator.setKeyState(key_id, 1);
+                }
+            break;
 
-                        // Reload the ROM
-                        emulator.loadROM(GAME);           
-                    }
-
-                    // update emulator key buffer if keydown is on keypad
-                    if (c8const::key_map.contains(*SDL_GetKeyName(event.key.keysym.sym))) {
-                        key_id = c8const::key_map.at(*SDL_GetKeyName(event.key.keysym.sym));
-                        emulator.setKeyState(key_id, 1);
-                    }
-                break;
-
-                case SDL_KEYUP:
-                    // update emulator key buffer if keyup is on keypad
-                    if (c8const::key_map.contains(*SDL_GetKeyName(event.key.keysym.sym))) {
-                        key_id = c8const::key_map.at(*SDL_GetKeyName(event.key.keysym.sym));
-                        emulator.setKeyState(key_id, 0);
-                    }
-                break;
-
-                default:
-                break;
-            }
-        }
-
-        // tick the internal C8 timers at 60 Hz
-        if (delta_acc_timer >= c8const::TIMER_FREQ) {
-            emulator.tickDelayTimer();
-            emulator.tickSoundTimer();
-            delta_acc_timer = 0;
-        }
-
-        // emulate a single cycle at 500 Hz
-        if (delta_acc_emulator >= c8const::EMULATOR_FREQ) {
-            emulator.emulationCycle();
-            delta_acc_emulator = 0;
-        }
-
-
-        // draw screen
-        if (emulator.getDrawFlag()) {
-            graphics::drawScreen();
-            emulator.setDrawFlag(false);
+            case SDL_KEYUP:
+                // update emulator key buffer if keyup is on keypad
+                if (c8const::key_map.contains(*SDL_GetKeyName(event.key.keysym.sym))) {
+                    key_id = c8const::key_map.at(*SDL_GetKeyName(event.key.keysym.sym));
+                    emulator.setKeyState(key_id, 0);
+                }
+            break;
         }
     }
+}
 
-    graphics::destroyGraphics();
+void mainLoop() {
+    curr_time = std::chrono::steady_clock::now();
+    delta_time = std::chrono::duration<float>(curr_time - prev_time).count();
+    delta_acc_emulator += delta_time;
+    delta_acc_timer += delta_time;
+    prev_time = curr_time;
+
+    handleEvents();
+
+    // Tick the internal Chip8 timers at 60 Hz
+    if (delta_acc_timer >= c8const::TIMER_FREQ) {
+        emulator.tickDelayTimer();
+        emulator.tickSoundTimer();
+        delta_acc_timer = 0;
+    }
+
+    // Emulate a single cycle at 500 Hz
+    if (delta_acc_emulator >= c8const::EMULATOR_FREQ) {
+        emulator.emulationCycle();
+        delta_acc_emulator = 0;
+    }
+
+    // Draw the screen
+    if (emulator.getDrawFlag()) {
+        std::cout << "Frame rendered!" << std::endl;
+        graphics::drawScreen();
+        emulator.setDrawFlag(false);
+    }
+
+    // Exit handling for Emscripten
+    if (quit) {
+        emscripten_cancel_main_loop();  // Stop the loop
+        cleanup();
+    }
+}
+
+int main(int argc, char* argv[]) {
+    initialize();
+
+    #if __EMSCRIPTEN__
+        // Use Emscripten's main loop
+        emscripten_set_main_loop(mainLoop, 0, 1);
+    #else
+        // Native loop
+        while (!quit) {
+            mainLoop();
+        }
+        cleanup();
+    #endif
 
     return 0;
 }
