@@ -21,11 +21,6 @@ file(GLOB HEADERS include/*.hpp)
 file(GLOB SOURCES src/*.cpp)
 add_executable(Chip-8_emulator ${HEADERS} ${SOURCES})
 
-# target_link_libraries(Chip-8_emulator PRIVATE 
-#     SDL2::SDL2-static
-#     SDL2::SDL2main
-# )
-
 # Handle Emscripten-specific configuration
 if( ${CMAKE_SYSTEM_NAME} MATCHES "Emscripten")
     # Set Emscripten-specific flags

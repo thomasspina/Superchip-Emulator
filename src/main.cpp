@@ -2,7 +2,10 @@
 #include "graphics.hpp"
 #include <chrono>
 #include <iostream>
+
+#ifdef __EMSCRIPTEN__
 #include <emscripten.h>
+#endif
 
 // Global variables
 Chip8 emulator;
@@ -94,14 +97,13 @@ void mainLoop() {
 
     // Draw the screen
     if (emulator.getDrawFlag()) {
-        std::cout << "Frame rendered!" << std::endl;
         graphics::drawScreen();
         emulator.setDrawFlag(false);
     }
 
     // Exit handling for Emscripten
     if (quit) {
-        emscripten_cancel_main_loop();  // Stop the loop
+        // emscripten_cancel_main_loop();  // Stop the loop
         cleanup();
     }
 }
