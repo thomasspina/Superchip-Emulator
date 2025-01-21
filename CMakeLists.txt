@@ -21,15 +21,15 @@ file(GLOB HEADERS include/*.hpp)
 file(GLOB SOURCES src/*.cpp)
 add_executable(Chip-8_emulator ${HEADERS} ${SOURCES})
 
-# Handle Emscripten-specific configuration
+# Handle Emscripten-specific configuration TODO: Properly configure cmake for emscripten
 if( ${CMAKE_SYSTEM_NAME} MATCHES "Emscripten")
     # Set Emscripten-specific flags
     set(CMAKE_EXECUTABLE_SUFFIX ".html") # Output as HTML
     target_compile_options(Chip-8_emulator PRIVATE
-        -s USE_SDL=2          # Enable SDL2
+        -s USE_SDL=2             # Enable SDL2
         -s ALLOW_MEMORY_GROWTH=1 # Allow WebAssembly memory to grow
-        -s WASM=1             # Ensure output is WebAssembly
-        -s ASSERTIONS=1       # Add runtime assertions for debugging
+        -s WASM=1                # Ensure output is WebAssembly
+        -s ASSERTIONS=1          # Add runtime assertions for debugging
     )
     target_link_options(Chip-8_emulator PRIVATE
         -s USE_SDL=2
