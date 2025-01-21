@@ -1,3 +1,5 @@
 build/
 .vscode/
 .DS_Store/
+web/*.data
+web/index.wasm/
