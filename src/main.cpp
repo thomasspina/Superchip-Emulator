@@ -124,3 +124,22 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
+
+// Extern C Functions
+extern "C" {
+    void loadROM(const char* romName) {
+        std::string romNameStr(romName);
+        emulator = Chip8();                     // Reset emulator
+        graphics::clearScreen();                // Clear screen
+        graphics::clearBuffer();
+        emulator.loadROM(romNameStr);          // Load the ROM
+    }
+
+    // void resetEmulator() {
+    //     emulator = Chip8();                 // Reset emulator
+    //     graphics::clearScreen();            // Clear screen
+    //     graphics::clearBuffer();            // Clear buffer
+    //     emulator.loadROM(GAME);             // Reload the default ROM
+    // }
+}
+
