@@ -1,0 +1,16 @@
+body {
+    background-color: black;
+}
+
+#rom-select {
+    margin-top: 0.3rem;
+    padding: 0.2rem;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+#canvas {
+    margin-top: 1rem;
+    border: 1px solid grey;
+    border-radius: 1%;
+}
