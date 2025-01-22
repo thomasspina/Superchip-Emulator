@@ -1,5 +1,4 @@
 #include "graphics.hpp"
-
 #include <iostream>
 
 namespace graphics {
@@ -9,6 +8,8 @@ namespace graphics {
     }
 
     unsigned char gfx[C8_SCREEN_HEIGHT][C8_SCREEN_WIDTH] = {0};
+
+    bool isInvert = false;
 }
 
 
@@ -35,7 +36,13 @@ void graphics::destroyGraphics() {
 }
 
 void graphics::clearScreen() {
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+
+    if (isInvert) {
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    } else {
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    }
+
     SDL_RenderClear(renderer);
 }
 
@@ -46,8 +53,12 @@ void graphics::clearBuffer() {
 
 void graphics::drawScreen() {
     clearScreen();
-    
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+
+    if (isInvert) {
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    } else {
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    }
     
     for (int i = 0; i < C8_SCREEN_HEIGHT; i++) {
         for (int j = 0; j < C8_SCREEN_WIDTH; j++) {
@@ -61,3 +72,8 @@ void graphics::drawScreen() {
 
     SDL_RenderPresent(renderer);
 }
+
+void graphics::invert() {
+    isInvert = !isInvert;
+}
+
