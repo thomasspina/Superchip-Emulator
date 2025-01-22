@@ -8,15 +8,19 @@ html {
 }
 
 body {
-    /* font-family: "Jersey 10", "Fjalla One", "Chakra Petch", "Press Start 2P", "VT323", serif; */
-    /* font-family: "VT323", serif; */
     background-color: black;
+    color: white;
 }
-/* 
-#game {
-    display: flex;
-    justify-content: space-between;
-} */
+
+.light-mode {
+    background-color: white;
+    color: black;
+}
+
+.dark-mode {
+    background-color: black;
+    color: white;
+}
 
 #app {
     display: flex;
@@ -24,10 +28,27 @@ body {
     align-items: center;
 }
 
+#navigation {
+    width: 13rem;
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+#github, #info, #invert {
+    all: unset;
+    cursor: pointer;
+    background-color: inherit;
+    padding: 1rem;
+    border-radius: 15px
+}
+
 #title {
     margin-top: 1rem;
     font-size: 4rem;
-    color: white;
     margin: 0;
     padding: 0;
 }
@@ -40,7 +61,6 @@ body {
 }
 
 #rom-select, #rom-load {
-    background-color: white;
     font-family: inherit;
     font-weight: bold;
     display: inline-block;
@@ -54,5 +74,6 @@ body {
 }
 
 #rom-load {
+    cursor: pointer;
     padding: 0 1.2rem;
 }

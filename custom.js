@@ -28,6 +28,19 @@ Module["onRuntimeInitialized"] = function () {
     };
 
     document.querySelector("#invert").onclick = function (event) {
+        var element = document.body;
+        element.classList.toggle("light-mode");
+
+        element = document.getElementById("rom-select")
+        element.classList.toggle("dark-mode");
+
+        element = document.getElementById("rom-load")
+        element.classList.toggle("dark-mode");
+
+        let changeIcon = (icon) => {
+            icon.classList.toggle("fa-solid");
+        }
+
         applyInvert(document.querySelector("#rom-select").value);
     };
 };
