@@ -5,10 +5,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Chip-8 Emulator</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Fjalla+One&family=Jersey+10&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
-    <center>
-        <div id="menu">
+    <div id="app">
+        <div>
+            <p id="title">Chip-8 Emulator</p>
+        </div>
+        <div id="input">
             <select id="rom-select">
                 <option value='{"game":"Airplane"}'> Airplane</option>
                 <option value='{"game":"AstroDodge"}'> AstroDodge</option>
@@ -24,8 +30,11 @@
                 <option value='{"game":"UFO"}'> UFO</option>
                 <option value='{"game":"Wall"}'> Wall</option>
             </select>
+
+            <button id="rom-load">Load Rom</button>
         </div>
-        <canvas id="canvas" oncontextmenu="event.preventDefault()" width="640" height="320"></canvas>
+        <canvas id="canvas" oncontextmenu="event.preventDefault()" width="540" height="320"></canvas>
+
         <script type="text/javascript">
             var Module = {
 
@@ -36,6 +45,6 @@
         </script>
         <script src="index.js"></script>
         <script src="custom.js"></script>
-    </center>
+    </div>
 </body>
 </html>

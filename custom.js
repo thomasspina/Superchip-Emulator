@@ -14,7 +14,7 @@ Module["onRuntimeInitialized"] = function () {
     getRomOptionsFromDropdown(document.querySelector("#rom-select").value);
 
     // Add listener for dropdown changes
-    document.querySelector("#rom-select").onchange = function (event) {
-        getRomOptionsFromDropdown(event.target.value);
+    document.querySelector("#rom-load").onclick = function (event) {
+        getRomOptionsFromDropdown(document.querySelector("#rom-select").value);
     };
 };
