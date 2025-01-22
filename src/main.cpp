@@ -135,11 +135,9 @@ extern "C" {
         emulator.loadROM(romNameStr);          // Load the ROM
     }
 
-    // void resetEmulator() {
-    //     emulator = Chip8();                 // Reset emulator
-    //     graphics::clearScreen();            // Clear screen
-    //     graphics::clearBuffer();            // Clear buffer
-    //     emulator.loadROM(GAME);             // Reload the default ROM
-    // }
+    void invert(const char* romName) {
+        graphics::invert();
+        loadROM(romName);
+    }
 }
 

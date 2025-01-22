@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chip-8 Emulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Fjalla+One&family=Jersey+10&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+</head>
+<body>
+    <div id="app">
+        <div id="navigation">
+            <button id="info">
+                <i class="fa-solid fa-info fa-2x"></i>
+            </button>
+            <button id="github" onclick="window.open('https://github.com/thomasspina/Chip8-emulator', '_blank');">
+                <i class="fa-brands fa-github fa-2x"></i>
+            </button>
+            <button id="invert">
+                <icon class="fa-regular fa-lightbulb fa-2x"></icon>
+            </button>
+        </div>
+        <div>
+            <p id="title">Chip-8 Emulator</p>
+        </div>
+        <div id="input">
+            <select id="rom-select">
+                <option value='{"game":"Airplane"}'> Airplane</option>
+                <option value='{"game":"AstroDodge"}'> AstroDodge</option>
+                <option value='{"game":"Blinky"}'> Blinky</option>
+                <option value='{"game":"Blitz"}'> Blitz</option>
+                <option value='{"game":"Brix"}' selected> Brix</option>
+                <option value='{"game":"Ghost Escape!"}'> Ghost Escape!</option>
+                <option value='{"game":"Invaders"}'> Invaders</option>
+                <option value='{"game":"Jackpot"}'> Jackpot</option>
+                <option value='{"game":"Pong2"}'> Pong2</option>
+                <option value='{"game":"Snek"}'> Snek</option>
+                <option value='{"game":"Tetris"}'> Tetris</option>
+                <option value='{"game":"UFO"}'> UFO</option>
+                <option value='{"game":"Wall"}'> Wall</option>
+            </select>
+
+            <button id="rom-load">Load Rom</button>
+        </div>
+        <canvas id="canvas" oncontextmenu="event.preventDefault()" width="540" height="320"></canvas>
+
+        <script type="text/javascript">
+            var Module = {
+
+                canvas: (function() {
+                    return document.getElementById('canvas');
+                })()
+            };
+        </script>
+        <script src="index.js"></script>
+        <script src="custom.js"></script>
+    </div>
+</body>
+</html>

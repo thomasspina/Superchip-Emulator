@@ -10,6 +10,7 @@ namespace graphics {
     void clearScreen();
     void clearBuffer();
     void drawScreen();
+    void invert();
 
     extern unsigned char gfx[C8_SCREEN_HEIGHT][C8_SCREEN_WIDTH];
 };
