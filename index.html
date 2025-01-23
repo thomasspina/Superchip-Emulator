@@ -19,54 +19,61 @@
         <dialog id="info-dialogue">
             <div id="dialogue-window">
                 <div id="dialogue-title"> Information </div>
+                <hr>
                 <div class="dialogue-section">
                     <p> Instruction </p>
                     <p>
-                        CHIP-8 was originally designed for computers that used a 16-key keypad for input, which is quite 
-                        different from modern keyboards or controllers unfortunately. This means you may need to experiment with different keys on a modern keyboard 
-                        to figure out which ones correspond to the original controls, as the layout doesn’t directly match today’s devices.
-    
-                        However, most games do map back to the classic W,A,S,D keys.
+                        CHIP-8 was originally designed for computers that used a 16-key keypad for input, which is quite different from modern keyboards 
+                        or controllers, unfortunately. This means you may need to experiment with the keys shown on the <b>Modern Keyboard</b> grid below 
+                        to figure out which ones correspond to the original controls, as the layout doesn’t directly match today’s devices. However, most 
+                        games conveniently map back to the classic W, A, S, and D keys.
                     </p>
                     <div id="input-grids">
-                        <div class="input-grid">
-                            <div>1</div>
-                            <div>2</div>
-                            <div>3</div>
-                            <div>4  </div>
-                            <div>Q</div>
-                            <div>W</div>
-                            <div>E</div>
-                            <div>R</div>
-                            <div>A</div>
-                            <div>S</div>
-                            <div>D</div>
-                            <div>F</div>
-                            <div>Z</div>
-                            <div>X</div>
-                            <div>C</div>
-                            <div>V</div>
+                        <div>
+                            <p> Chip-8 keypad </p>
+                            <div class="input-grid">
+                                <div>1</div>
+                                <div>2</div>
+                                <div>3</div>
+                                <div>4  </div>
+                                <div>Q</div>
+                                <div>W</div>
+                                <div>E</div>
+                                <div>R</div>
+                                <div>A</div>
+                                <div>S</div>
+                                <div>D</div>
+                                <div>F</div>
+                                <div>Z</div>
+                                <div>X</div>
+                                <div>C</div>
+                                <div>V</div>
+                            </div>
                         </div>
-                        <div class="input-grid">
-                            <div>1</div>
-                            <div>2</div>
-                            <div>3</div>
-                            <div>C</div>
-                            <div>4</div>
-                            <div>5</div>
-                            <div>6</div>
-                            <div>D</div>
-                            <div>7</div>
-                            <div>8</div>
-                            <div>9</div>
-                            <div>E</div>
-                            <div>A</div>
-                            <div>0</div>
-                            <div>B</div>
-                            <div>F</div>
+                        <div>
+                            <p> Modern Keyboard </p>
+                            <div class="input-grid">
+                                <div>1</div>
+                                <div>2</div>
+                                <div>3</div>
+                                <div>C</div>
+                                <div>4</div>
+                                <div>5</div>
+                                <div>6</div>
+                                <div>D</div>
+                                <div>7</div>
+                                <div>8</div>
+                                <div>9</div>
+                                <div>E</div>
+                                <div>A</div>
+                                <div>0</div>
+                                <div>B</div>
+                                <div>F</div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <hr>
                 <div class="dialogue-section">
                     <p> Context for those interested </p>
                     <p id="dialogue-intro"> 
@@ -78,7 +85,7 @@
                         blocky and more polished, while remaining naturally compatible with CHIP-8 games. <br>
                         <br>
                         Our project is an emulator of Super-CHIP, meaning it can run both CHIP-8 and Super-CHIP games, just as the original Super-CHIP 
-                        was designed to do.
+                        was designed to do. (Note: Titles shown with <b>SCH</b> tag are Super-Chip games)
                     </p>
                 </div>
                 <button id="close-info"> </button>
