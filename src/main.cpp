@@ -113,7 +113,7 @@ int main(int argc, char* argv[]) {
 
     #if __EMSCRIPTEN__
         // Use Emscripten's main loop
-        emscripten_set_main_loop(mainLoop, 60, 1);
+        emscripten_set_main_loop(mainLoop, 0, 1);
     #else
         // Native loop
         while (!quit) {

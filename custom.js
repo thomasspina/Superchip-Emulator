@@ -31,10 +31,10 @@ Module["onRuntimeInitialized"] = function () {
         var element = document.body;
         element.classList.toggle("light-mode");
 
-        element = document.getElementById("rom-select")
+        element = document.getElementById("rom-select");
         element.classList.toggle("dark-mode");
 
-        element = document.getElementById("rom-load")
+        element = document.getElementById("rom-load");
         element.classList.toggle("dark-mode");
 
         let changeIcon = (icon) => {
@@ -44,3 +44,17 @@ Module["onRuntimeInitialized"] = function () {
         applyInvert(document.querySelector("#rom-select").value);
     };
 };
+
+const openDialogue = document.querySelector("#open-info");
+const closeDialogue = document.querySelector("#close-info");
+const dialogue = document.querySelector("#info-dialogue");
+
+openDialogue.addEventListener("click", () => {
+    dialogue.showModal();
+})
+
+closeDialogue.addEventListener("click", () => {
+    dialogue.close();
+})
+
+

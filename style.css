@@ -30,6 +30,57 @@ body {
     justify-content: space-between;
 }
 
+#dialogue-window {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 60vw;
+    min-height: 80vh;
+    overflow-y: auto; 
+}
+
+#dialogue-title {
+    font-size: 3rem;
+}
+
+#close-info {
+    top: 1rem;
+    right: 1rem;
+    position: absolute;
+    padding: 1rem;
+}
+
+.dialogue-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dalogue-section > p {
+    margin: 0.5rem;
+}
+
+#input-grids {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: between;
+    gap: 5rem;
+}
+
+.input-grid {
+    display: grid;
+    grid-template-columns: 2rem 2rem 2rem 2rem;
+    grid-template-rows: 2rem 2rem 2rem 2rem;
+}
+
+.input-grid > div {
+    font-weight: bold;
+    border: 1px solid black;
+    display: grid;
+    place-items: center;
+}
+
 #navigation {
     width: 13rem;
     position: absolute;
@@ -40,7 +91,7 @@ body {
     justify-content: space-between;
 }
 
-#github, #info, #invert {
+#github, #open-info, #invert {
     all: unset;
     cursor: pointer;
     background-color: inherit;

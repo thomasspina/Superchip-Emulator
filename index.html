@@ -16,8 +16,76 @@
 </head>
 <body>
     <div id="app">
+        <dialog id="info-dialogue">
+            <div id="dialogue-window">
+                <div id="dialogue-title"> Information </div>
+                <div class="dialogue-section">
+                    <p> Instruction </p>
+                    <p>
+                        CHIP-8 was originally designed for computers that used a 16-key keypad for input, which is quite 
+                        different from modern keyboards or controllers unfortunately. This means you may need to experiment with different keys on a modern keyboard 
+                        to figure out which ones correspond to the original controls, as the layout doesn’t directly match today’s devices.
+    
+                        However, most games do map back to the classic W,A,S,D keys.
+                    </p>
+                    <div id="input-grids">
+                        <div class="input-grid">
+                            <div>1</div>
+                            <div>2</div>
+                            <div>3</div>
+                            <div>4  </div>
+                            <div>Q</div>
+                            <div>W</div>
+                            <div>E</div>
+                            <div>R</div>
+                            <div>A</div>
+                            <div>S</div>
+                            <div>D</div>
+                            <div>F</div>
+                            <div>Z</div>
+                            <div>X</div>
+                            <div>C</div>
+                            <div>V</div>
+                        </div>
+                        <div class="input-grid">
+                            <div>1</div>
+                            <div>2</div>
+                            <div>3</div>
+                            <div>C</div>
+                            <div>4</div>
+                            <div>5</div>
+                            <div>6</div>
+                            <div>D</div>
+                            <div>7</div>
+                            <div>8</div>
+                            <div>9</div>
+                            <div>E</div>
+                            <div>A</div>
+                            <div>0</div>
+                            <div>B</div>
+                            <div>F</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dialogue-section">
+                    <p> Context for those interested </p>
+                    <p id="dialogue-intro"> 
+                        CHIP-8 is a simple virtual computer system from the 1970s, created to help people build small games like Pong or Space Invaders 
+                        on basic machines. It acted as a straightforward "language" for old computers, making game programming easier. Its capabilities 
+                        were limited to black-and-white visuals and a single-tone sound. <br>
+                        <br>
+                        Super-CHIP, introduced in the 1980s, improved upon CHIP-8 by allowing smoother and more detailed visuals, making games less 
+                        blocky and more polished, while remaining naturally compatible with CHIP-8 games. <br>
+                        <br>
+                        Our project is an emulator of Super-CHIP, meaning it can run both CHIP-8 and Super-CHIP games, just as the original Super-CHIP 
+                        was designed to do.
+                    </p>
+                </div>
+                <button id="close-info"> </button>
+            </div>
+        </dialog>
         <div id="navigation">
-            <button id="info">
+            <button id="open-info">
                 <i class="fa-solid fa-info fa-2x"></i>
             </button>
             <button id="github" onclick="window.open('https://github.com/thomasspina/Chip8-emulator', '_blank');">
@@ -53,7 +121,6 @@
 
         <script type="text/javascript">
             var Module = {
-
                 canvas: (function() {
                     return document.getElementById('canvas');
                 })()
