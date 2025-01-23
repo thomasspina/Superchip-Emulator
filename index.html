@@ -88,9 +88,13 @@
                         was designed to do. (Note: Titles shown with <b>SCH</b> tag are Super-Chip games)
                     </p>
                 </div>
-                <button id="close-info"> </button>
+                <button id="close-info">
+                    <icon class="fa-solid fa-xmark fa-2x"" id="close-icon"></icon>    
+                </button>
             </div>
         </dialog>
+        <!-- <div id="upper-container"> -->
+        <h1 id="title">Chip-8 Emulator</h1>
         <div id="navigation">
             <button id="open-info">
                 <i class="fa-solid fa-info fa-2x"></i>
@@ -101,9 +105,6 @@
             <button id="invert">
                 <icon class="fa-regular fa-lightbulb fa-2x"></icon>
             </button>
-        </div>
-        <div>
-            <p id="title">Chip-8 Emulator</p>
         </div>
         <div id="input">
             <select id="rom-select">
@@ -124,7 +125,7 @@
 
             <button id="rom-load">Load Rom</button>
         </div>
-        <canvas id="canvas" oncontextmenu="event.preventDefault()" width="540" height="320"></canvas>
+        <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
 
         <script type="text/javascript">
             var Module = {
