@@ -56,5 +56,6 @@ openDialogue.addEventListener("click", () => {
 closeDialogue.addEventListener("click", () => {
     dialogue.close();
 })
+//
 
 
