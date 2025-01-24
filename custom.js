@@ -1,61 +1,63 @@
-// Function to parse dropdown options and call loadROM
-function getRomOptionsFromDropdown(optionText) {
-    let romOptions = JSON.parse(optionText); // Parse JSON from dropdown value
-    const romName = romOptions["game"];
-    // const cyclesPerFrame = romOptions["cyclesPerFrame"];
-
-    // Call the C++ function via WebAssembly
-    Module.ccall("loadROM", null, ["string"], [romName]);
+function parseRomOptions(optionText) {
+    try {
+        return JSON.parse(optionText);
+    } catch (error) {
+        console.error("Failed to parse ROM options:", error);
+        return null;
+    }
 }
 
-function applyInvert(optionText) {
-    let romOptions = JSON.parse(optionText); // Parse JSON from dropdown value
-    const romName = romOptions["game"];
-    // const cyclesPerFrame = romOptions["cyclesPerFrame"];
-
-    // Call the C++ function via WebAssembly
-    Module.ccall("invert", null, ["string"], [romName]);
+function loadROM(optionText) {
+    const romOptions = parseRomOptions(optionText);
+    if (romOptions) {
+        Module.ccall("loadROM", null, ["string"], [romOptions["game"]]);
+    }
 }
+
+function applyInversion(optionText) {
+    const romOptions = parseRomOptions(optionText);
+    if (romOptions) {
+        Module.ccall("invert", null, ["string"], [romOptions["game"]]);
+    }
+}
+
+function toggleTheme() {
+    const body = document.body;
+    body.classList.toggle("light-mode");
+
+    document.querySelectorAll("#rom-select, #rom-load").forEach((el) => {
+        el.classList.toggle("dark-mode");
+    });
+}
+
 
 // Initialize WebAssembly Module
 Module["onRuntimeInitialized"] = function () {
-    // Trigger load for the initially selected ROM
-    getRomOptionsFromDropdown(document.querySelector("#rom-select").value);
+    const romSelect = document.querySelector("#rom-select");
+    const romLoad = document.querySelector("#rom-load");
+    const invertButton = document.querySelector("#invert");
 
-    // Add listener for dropdown changes
-    document.querySelector("#rom-load").onclick = function (event) {
-        getRomOptionsFromDropdown(document.querySelector("#rom-select").value);
-    };
+    loadROM(romSelect.value);
 
-    document.querySelector("#invert").onclick = function (event) {
-        var element = document.body;
-        element.classList.toggle("light-mode");
+    romLoad.addEventListener("click", () => {
+        loadROM(romSelect.value);
+    });
 
-        element = document.getElementById("rom-select");
-        element.classList.toggle("dark-mode");
+    invertButton.addEventListener("click", () => {
+        toggleTheme();
 
-        element = document.getElementById("rom-load");
-        element.classList.toggle("dark-mode");
-
-        let changeIcon = (icon) => {
+        const changeIcon = (icon) => {
             icon.classList.toggle("fa-solid");
         }
 
-        applyInvert(document.querySelector("#rom-select").value);
-    };
+        applyInversion(romSelect.value);
+    });
 };
 
-const openDialogue = document.querySelector("#open-info");
-const closeDialogue = document.querySelector("#close-info");
-const dialogue = document.querySelector("#info-dialogue");
+document.querySelector("#open-info").addEventListener("click", () => {
+    document.querySelector("#info-dialogue").showModal();
+});
 
-openDialogue.addEventListener("click", () => {
-    dialogue.showModal();
-})
-
-closeDialogue.addEventListener("click", () => {
-    dialogue.close();
-})
-//
-
-
+document.querySelector("#close-info").addEventListener("click", () => {
+    document.querySelector("#info-dialogue").close();
+});

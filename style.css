@@ -45,7 +45,6 @@ button {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* max-height: 90vh; */
     margin: 0;
     padding: 0;
 }
@@ -124,11 +123,9 @@ button {
 }
 
 #navigation {
-    /* border: 1px solid red; */
+    margin-bottom: 0.5rem;
+    padding-right: 1rem;
     width: 13rem;
-    /* position: absolute;
-    top: 1rem;
-    right: 2rem; */
     display: flex;
     justify-content: flex-end;
     gap: 1.5rem
@@ -143,7 +140,6 @@ button {
 }
 
 #title {
-    /* border: 1px solid red; */
     flex: 2;
     text-align: center;
     padding-left: 40px;
@@ -189,5 +185,9 @@ button {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    #navigation {
+        padding: 0;
     }
 }
