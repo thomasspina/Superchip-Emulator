@@ -22,6 +22,7 @@ Chip8::Chip8() {
     draw_flag = false;
     key_wait_flag = false;
     high_res_flag = false;
+    reset_flag = false;
     
     clearStack();
     clearRegisters();
@@ -234,10 +235,12 @@ void Chip8::decodeOpcode() {
 }
 
 void Chip8::executeSI(unsigned short opInstruction) {
-    if ((opInstruction & 0x00C0) == 0x00C0) {
+    if ((opInstruction & 0x00F0) == 0x00C0) {
         // SCRL DWN N - 00CN : Scroll display N pixels down; in low resolution mode, N/2 pixels
         graphics::scrollDown(0x000F & opInstruction);
         draw_flag = true;
+        pc += 2;
+        return;
     }
 
     switch(opInstruction & 0x00FF) {
@@ -270,7 +273,7 @@ void Chip8::executeSI(unsigned short opInstruction) {
 
         // EXT - 00FD : Exit interpreter
         case 0x00FD:
-            // TODO:
+            reset_flag = true; // exit remade as reset instead
         break;
 
         // DISBL HI-RES - 00FE : Disable high-resolution mode

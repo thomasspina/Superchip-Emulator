@@ -29,6 +29,14 @@ void cleanup() {
     graphics::destroyGraphics();
 }
 
+void resetEmulator() {
+    std::cout << "Game reset!\n";
+    emulator = Chip8();
+    graphics::clearScreen();
+    graphics::clearBuffer();
+    emulator.loadROM(GAME);
+}
+
 void handleEvents() {
     while (SDL_PollEvent(&event)) {
         switch (event.type) {
@@ -40,11 +48,7 @@ void handleEvents() {
 
                 // Reset on pressing ENTER
                 if (event.key.keysym.sym == SDLK_RETURN) {
-                    std::cout << "Game reset!\n";
-                    emulator = Chip8();
-                    graphics::clearScreen();
-                    graphics::clearBuffer();
-                    emulator.loadROM(GAME);
+                    resetEmulator();
                 }
 
                 // update emulator key buffer if keydown is on keypad
@@ -99,6 +103,11 @@ void mainLoop() {
     if (emulator.getDrawFlag()) {
         graphics::drawScreen();
         emulator.setDrawFlag(false);
+    }
+
+    // Reset if exit flag
+    if (emulator.getResetFlag()) {
+        resetEmulator();
     }
 
     // Exit handling for Emscripten
