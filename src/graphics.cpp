@@ -7,7 +7,7 @@ namespace graphics {
         SDL_Renderer* renderer = nullptr;
     }
 
-    unsigned char gfx[C8_SCREEN_HEIGHT][C8_SCREEN_WIDTH] = {0};
+    unsigned char gfx[SC8_SCREEN_HEIGHT][SC8_SCREEN_WIDTH] = {0};
 
     bool isInvert = false;
 }
@@ -20,13 +20,13 @@ void graphics::initializeGraphics() {
         return;
     }
 
-    if (SDL_CreateWindowAndRenderer(C8_SCREEN_WIDTH*C8_SCREEN_SCALE, C8_SCREEN_HEIGHT*C8_SCREEN_SCALE, 0, &window, &renderer)) {
+    if (SDL_CreateWindowAndRenderer(SC8_SCREEN_WIDTH*SC8_SCREEN_SCALE, SC8_SCREEN_HEIGHT*SC8_SCREEN_SCALE, 0, &window, &renderer)) {
         std::cerr << "Window creation failed: " << SDL_GetError() << std::endl;
         SDL_Quit();
         return;
     }
     // since screen is 64 x 32, we need to scale up everything we draw
-    SDL_RenderSetScale(renderer, C8_SCREEN_SCALE, C8_SCREEN_SCALE);
+    SDL_RenderSetScale(renderer, SC8_SCREEN_SCALE, SC8_SCREEN_SCALE);
 }
 
 void graphics::destroyGraphics() {
@@ -60,8 +60,8 @@ void graphics::drawScreen() {
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     }
     
-    for (int i = 0; i < C8_SCREEN_HEIGHT; i++) {
-        for (int j = 0; j < C8_SCREEN_WIDTH; j++) {
+    for (int i = 0; i < SC8_SCREEN_HEIGHT; i++) {
+        for (int j = 0; j < SC8_SCREEN_WIDTH; j++) {
 
             // Render a pixel at (j, i) as white if gfx[i][j] is non-zero
             if (gfx[i][j]) {
@@ -75,5 +75,17 @@ void graphics::drawScreen() {
 
 void graphics::invert() {
     isInvert = !isInvert;
+}
+
+void graphics::scrollLeft(int N) {
+    // TODO:
+}
+
+void graphics::scrollRight(int N) {
+    // TODO:
+}
+
+void graphics::scrollDown(int N) {
+    // TODO:   
 }
 

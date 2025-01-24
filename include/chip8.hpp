@@ -24,6 +24,9 @@ private:
     // 16 CPU registers, 16th is a carry flag, V0-VF
     unsigned char V[16];
 
+    // RPL memory
+    unsigned char RPL[8];
+
     unsigned short I;
     unsigned short pc;
 
@@ -45,6 +48,7 @@ private:
 
     // Indicates when the screen needs to be updated
     bool draw_flag;
+    bool high_res_flag;
     bool key_wait_flag;
 
     void clearStack();
