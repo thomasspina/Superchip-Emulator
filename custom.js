@@ -64,8 +64,8 @@ document.querySelector("#close-info").addEventListener("click", () => {
     dialog.close();
 });
 
-document.querySelector("#info-dialogue").addEventListener("click", (event) => {
-    if (event.target === document.querySelector("#info-dialogue")) { 
+dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) { 
         dialog.close();
     }
 });
