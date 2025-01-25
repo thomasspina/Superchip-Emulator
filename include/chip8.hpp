@@ -6,6 +6,7 @@
 
 class Chip8 {
 private:
+    // Change default game here
     std::string game = "Brix";
 
     // unsig short: 2 bytes unsig char: 1 byte
