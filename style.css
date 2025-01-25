@@ -18,6 +18,10 @@ hr {
     width: 90%;
 }
 
+b {
+    display: inline;
+}
+
 dialog {
     border-radius: 15px;
 }
@@ -110,6 +114,20 @@ button {
     font-weight: bold;
     border: 1px solid black;
     display: grid;
+    place-items: center;
+}
+
+#instruction-grid {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: 10rem 30rem
+}
+
+#instruction-grid > div {
+    padding: 0.2rem;
+    display: inline;
+    border: 1px solid black;
     place-items: center;
 }
 

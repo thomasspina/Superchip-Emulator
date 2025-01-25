@@ -54,10 +54,18 @@ Module["onRuntimeInitialized"] = function () {
     });
 };
 
+const dialog = document.querySelector("#info-dialogue");
+
 document.querySelector("#open-info").addEventListener("click", () => {
-    document.querySelector("#info-dialogue").showModal();
+    dialog.showModal();
 });
 
 document.querySelector("#close-info").addEventListener("click", () => {
-    document.querySelector("#info-dialogue").close();
+    dialog.close();
+});
+
+document.querySelector("#info-dialogue").addEventListener("click", (event) => {
+    if (event.target === document.querySelector("#info-dialogue")) { 
+        dialog.close();
+    }
 });

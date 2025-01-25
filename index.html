@@ -26,7 +26,8 @@
                         CHIP-8 was originally designed for computers that used a 16-key keypad for input, which is quite different from modern keyboards 
                         or controllers, unfortunately. This means you may need to experiment with the keys shown on the <b>Modern Keyboard</b> grid below 
                         to figure out which ones correspond to the original controls, as the layout doesn’t directly match today’s devices. However, most 
-                        games conveniently map back to the classic W, A, S, and D keys.
+                        games conveniently map to the classic W, A, S, D keys for controls. Additionally, we’ve included a Game Reset key, bound to 
+                        <b>Enter</b>, allowing you to easily reset your current game.
                     </p>
                     <div id="input-grids">
                         <div>
@@ -72,11 +73,97 @@
                             </div>
                         </div>
                     </div>
+                    <p id="dialogue-intro"> 
+                        Still, I have a feeling that you are probably busy and might not have the time to experiment with different keys to see what 
+                        works, which could lead to the assumption that what we’ve built here is broken. To make things more convenient, I’ve spent a 
+                        considerable amount of time playing and testing the controls and have compiled a list of the proper controls for each game below.
+                    </p>
+                    <div id="instruction-grid">
+                        <div>Game</div>
+                        <div>Controls</div>
+
+                        <div>Airplane</div>
+                        <div><b>S</b>: Drop Package</div>
+
+                        <div>AstroDodge</div>
+                        <div>
+                            <b>W</b>: Start, 
+                            <b>Q</b>: Left,
+                            <b>E</b>: Right
+                        </div>
+
+                        <div>Blinky</div>
+                        <div>
+                            <b>S</b>: Up, 
+                            <b>W</b>: Down,
+                            <b>Q</b>: Left,
+                            <b>E</b>: Right
+                        </div>
+
+                        <div>Blitz</div>
+                        <div>
+                            <b>W</b>: Start / Drop Package 
+                        </div>
+
+                        <div>Brix</div>
+                        <div>
+                            <b>Q</b>: Left, 
+                            <b>E</b>: Right
+                        </div>
+
+                        <div>Ghost Escape!</div>
+                        <div>
+                            <b>X</b>: Stop Bar 
+                        </div>
+
+                        <div>Jackpot</div>
+                        <div>
+                            <b>W</b>: Start Roulette,
+                            <b>1</b>: First,
+                            <b>2</b>: Second,
+                            <b>3</b>: Third
+                        </div>
+
+                        <div>Pong2</div>
+                        <div>
+                            <b>1</b>: 1st up, 
+                            <b>Q</b>: 1st down,
+                            <b>4</b>: 2nd up,
+                            <b>R</b>: 2nd down
+                        </div>
+
+                        <div>Snek</div>
+                        <div>
+                            <b>W</b>: Up/Reset,
+                            <b>S</b>: Down,
+                            <b>A</b>: Left,
+                            <b>D</b>: Right
+                        </div>
+
+                        <div>Tetris</div>
+                        <div>
+                            <b>Q</b>: Switch, 
+                            <b>A</b>: Accelerate,
+                            <b>W</b>: Left,
+                            <b>E</b>: Right
+                        </div>
+
+                        <div>UFO</div>
+                        <div>
+                            <b>W</b>: Launch
+                        </div>
+
+                        <div>Wall</div>
+                        <div>
+                            <b>1</b>: Up, 
+                            <b>Q</b>: Down
+                        </div>
+                    </div>
                 </div>
                 <hr>
                 <div class="dialogue-section">
                     <p> Context </p>
-                    <p id="dialogue-intro"> 
+                    <p> 
                         CHIP-8 is a simple virtual computer system from the 1970s, created to help people build small games like Pong or Space Invaders 
                         on basic machines. It acted as a straightforward "language" for old computers, making game programming easier. Its capabilities 
                         were limited to black-and-white visuals and a single-tone sound. <br>
@@ -112,13 +199,13 @@
             <select id="rom-select">
                 <option value='{"game":"Airplane"}'>Airplane</option>
                 <option value='{"game":"AstroDodge"}'>AstroDodge</option>
-                <option value='{"game":"Blinky"}'>Blinky</option>
+                <option value='{"game":"Blinky"}'>Blinky (Slow Load)</option>
                 <option value='{"game":"Blitz"}'>Blitz</option>
-                <option value='{"game":"Brix"}' selected>Brix</option>
+                <option value='{"game":"Brix"}' selected>Brix (Breakout)</option>
                 <option value='{"game":"Ghost Escape!"}'>Ghost Escape!</option>
                 <option value='{"game":"Invaders"}'>Invaders</option>
                 <option value='{"game":"Jackpot"}'>Jackpot</option>
-                <option value='{"game":"Pong2"}'>Pong2</option>
+                <option value='{"game":"Pong2"}'>Pong2 (2 Player)</option>
                 <option value='{"game":"Snek"}'>Snek</option>
                 <option value='{"game":"Tetris"}'>Tetris</option>
                 <option value='{"game":"UFO"}'>UFO</option>
