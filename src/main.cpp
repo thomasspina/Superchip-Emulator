@@ -91,7 +91,6 @@ void mainLoop() {
         delta_acc_timer = 0;
     }
 
-    
     // Calculate how many cycles accumulated
     int cyclesToRun = static_cast<int>(delta_acc_emulator / (c8const::EMULATOR_FREQ));
 
