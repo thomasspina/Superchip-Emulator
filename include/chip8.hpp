@@ -6,6 +6,9 @@
 
 class Chip8 {
 private:
+    // Change default game here
+    std::string game = "Brix";
+
     // unsig short: 2 bytes unsig char: 1 byte
 
     // 4096 bytes within 4KB
@@ -78,11 +81,13 @@ private:
 public:
     Chip8();
 
-    void loadROM(const std::string& message);
+    void loadROM();
     void emulationCycle();
     bool getDrawFlag() const { return draw_flag; }
     void setDrawFlag(bool flag) { draw_flag = flag; }
     void setKeyState(const unsigned char& key_id, const unsigned char& state);
     void tickDelayTimer() { delay_timer = delay_timer > 0 ? delay_timer - 1 : delay_timer; }
     void tickSoundTimer() { sound_timer = sound_timer > 0 ? sound_timer - 1 : sound_timer; }
+    const std::string getGame();
+    void setGame(const std::string& romName);
 };
