@@ -31,7 +31,7 @@ if (ENVIRONMENT_IS_NODE) {
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// include: C:\Users\ychen\AppData\Local\Temp\tmp6srh6x78.js
+// include: C:\Users\ychen\AppData\Local\Temp\tmp3l7s8fsk.js
 
   Module['expectedDataFileDownloads'] ??= 0;
   Module['expectedDataFileDownloads']++;
@@ -208,25 +208,25 @@ Module['FS_createPath']("/", "games", true, true);
     }
 
     }
-    loadPackage({"files": [{"filename": "/games/Airplane.ch8", "start": 0, "end": 356}, {"filename": "/games/AstroDodge.ch8", "start": 356, "end": 1475}, {"filename": "/games/Blinky.ch8", "start": 1475, "end": 3863}, {"filename": "/games/Blitz.ch8", "start": 3863, "end": 4254}, {"filename": "/games/Brix.ch8", "start": 4254, "end": 4534}, {"filename": "/games/Ghost Escape!.ch8", "start": 4534, "end": 4669}, {"filename": "/games/Guess.ch8", "start": 4669, "end": 4819}, {"filename": "/games/Invaders.ch8", "start": 4819, "end": 6120}, {"filename": "/games/Jackpot.ch8", "start": 6120, "end": 7320}, {"filename": "/games/Pong2.ch8", "start": 7320, "end": 7614}, {"filename": "/games/Snek.ch8", "start": 7614, "end": 7679}, {"filename": "/games/Tetris.ch8", "start": 7679, "end": 8173}, {"filename": "/games/UFO.ch8", "start": 8173, "end": 8397}, {"filename": "/games/Wall.ch8", "start": 8397, "end": 8626}, {"filename": "/games/WipeOff.ch8", "start": 8626, "end": 8832}, {"filename": "/games/Worm.ch8", "start": 8832, "end": 9509}, {"filename": "/games/test_opcode.ch8", "start": 9509, "end": 9987}], "remote_package_size": 9987});
+    loadPackage({"files": [{"filename": "/games/Airplane.ch8", "start": 0, "end": 356}, {"filename": "/games/AstroDodge.ch8", "start": 356, "end": 1475}, {"filename": "/games/Blinky.ch8", "start": 1475, "end": 3863}, {"filename": "/games/Blitz.ch8", "start": 3863, "end": 4254}, {"filename": "/games/Brix.ch8", "start": 4254, "end": 4534}, {"filename": "/games/Ghost Escape!.ch8", "start": 4534, "end": 4669}, {"filename": "/games/Invaders.ch8", "start": 4669, "end": 5970}, {"filename": "/games/Jackpot.ch8", "start": 5970, "end": 7170}, {"filename": "/games/Pong2.ch8", "start": 7170, "end": 7464}, {"filename": "/games/Snek.ch8", "start": 7464, "end": 7529}, {"filename": "/games/Tetris.ch8", "start": 7529, "end": 8023}, {"filename": "/games/UFO.ch8", "start": 8023, "end": 8247}, {"filename": "/games/Wall.ch8", "start": 8247, "end": 8476}, {"filename": "/games/test_opcode.ch8", "start": 8476, "end": 8954}], "remote_package_size": 8954});
 
   })();
 
-// end include: C:\Users\ychen\AppData\Local\Temp\tmp6srh6x78.js
-// include: C:\Users\ychen\AppData\Local\Temp\tmpr0pnnsz8.js
+// end include: C:\Users\ychen\AppData\Local\Temp\tmp3l7s8fsk.js
+// include: C:\Users\ychen\AppData\Local\Temp\tmp_tegvxcb.js
 
     // All the pre-js content up to here must remain later on, we need to run
     // it.
     if (Module['$ww'] || (typeof ENVIRONMENT_IS_PTHREAD != 'undefined' && ENVIRONMENT_IS_PTHREAD)) Module['preRun'] = [];
     var necessaryPreJSTasks = Module['preRun'].slice();
-  // end include: C:\Users\ychen\AppData\Local\Temp\tmpr0pnnsz8.js
-// include: C:\Users\ychen\AppData\Local\Temp\tmpsoys6yse.js
+  // end include: C:\Users\ychen\AppData\Local\Temp\tmp_tegvxcb.js
+// include: C:\Users\ychen\AppData\Local\Temp\tmpdgw1zq89.js
 
     if (!Module['preRun']) throw 'Module.preRun should exist because file support used it; did a pre-js delete it?';
     necessaryPreJSTasks.forEach((task) => {
       if (Module['preRun'].indexOf(task) < 0) throw 'All preRun tasks that exist before user pre-js code should remain after; did you replace Module or modify Module.preRun?';
     });
-  // end include: C:\Users\ychen\AppData\Local\Temp\tmpsoys6yse.js
+  // end include: C:\Users\ychen\AppData\Local\Temp\tmpdgw1zq89.js
 
 
 // Sometimes an existing Module object exists with properties

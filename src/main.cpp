@@ -20,7 +20,7 @@ void initialize() {
     emulator = Chip8();
     graphics::initializeGraphics();
     graphics::clearScreen();
-    emulator.loadROM(GAME);
+    emulator.loadROM();
     quit = false;
     prev_time = std::chrono::steady_clock::now();
 }
@@ -41,10 +41,17 @@ void handleEvents() {
                 // Reset on pressing ENTER
                 if (event.key.keysym.sym == SDLK_RETURN) {
                     std::cout << "Game reset!\n";
+
+                    // Get current instance's game
+                    const std::string currGame = emulator.getGame();
+
                     emulator = Chip8();
                     graphics::clearScreen();
                     graphics::clearBuffer();
-                    emulator.loadROM(GAME);
+
+                    // Set current emulator instance as the reset game
+                    emulator.setGame(currGame);
+                    emulator.loadROM();
                 }
 
                 // update emulator key buffer if keydown is on keypad
@@ -125,14 +132,14 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 
-// Extern C Functions
 extern "C" {
     void loadROM(const char* romName) {
         std::string romNameStr(romName);
         emulator = Chip8();                     // Reset emulator
         graphics::clearScreen();                // Clear screen
         graphics::clearBuffer();
-        emulator.loadROM(romNameStr);          // Load the ROM
+        emulator.setGame(romName);
+        emulator.loadROM();
     }
 
     void invert(const char* romName) {

@@ -2,9 +2,6 @@
 
 #include <unordered_map>
 
-/* MODIFY CONSTANT BELOW TO CHANGE GAMES */
-#define GAME "Brix"
-
 #define C8_SCREEN_WIDTH 64
 #define C8_SCREEN_HEIGHT 32
 #define C8_SCREEN_SCALE 20
