@@ -605,4 +605,3 @@ void Chip8::setGame(const std::string& romName) {
     game = romName;
 }
 
-
