@@ -601,6 +601,7 @@ const std::string Chip8::getGame() {
     return game;
 }
 
+// Set Game Value
 void Chip8::setGame(const std::string& romName) {
     game = romName;
 }
