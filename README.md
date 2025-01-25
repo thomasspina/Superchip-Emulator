@@ -75,12 +75,12 @@ Interpreter Keyboard
 | A | S | D | F |
 | Z | X | C | V |
 ### Features
-The project has comes with multiple games, the default one that is loaded is tetris. To change games, the game title must be changed in the [constants](include/constants.hpp) file.
+The project has comes with multiple games, the default one that is loaded is tetris. To change games, the game title must be changed in the [chip8](include/chip8.hpp) file.
 To do so simply change this line at the beginning of the file 
 ```cpp
-#define GAME "Tetris"
+std::string game = "Brix";
 ```
-and change tetris to one of the file names in the [games](games) folder.
+and change Brix to one of the file names in the [games](games) folder.
 You can also add other chip8 games that you find online to that file and run them the same way.
 
 ## Installation
