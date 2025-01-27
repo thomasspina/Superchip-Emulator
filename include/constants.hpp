@@ -3,7 +3,7 @@
 #include <unordered_map>
 
 // Change default game here
-#define GAME "Brix"
+#define GAME "ALIEN"
 
 #define SC8_SCREEN_WIDTH 128
 #define SC8_SCREEN_HEIGHT 64

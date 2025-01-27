@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.26)
-project(Chip-8_emulator LANGUAGES CXX)
+project(Superchip-emulator LANGUAGES CXX)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
@@ -19,19 +19,19 @@ FetchContent_MakeAvailable(SDL2)
 
 file(GLOB HEADERS include/*.hpp)
 file(GLOB SOURCES src/*.cpp)
-add_executable(Chip-8_emulator ${HEADERS} ${SOURCES})
+add_executable(Superchip-emulator ${HEADERS} ${SOURCES})
 
 # Handle Emscripten-specific configuration TODO: Properly configure cmake for emscripten
 if( ${CMAKE_SYSTEM_NAME} MATCHES "Emscripten")
     # Set Emscripten-specific flags
     set(CMAKE_EXECUTABLE_SUFFIX ".html") # Output as HTML
-    target_compile_options(Chip-8_emulator PRIVATE
+    target_compile_options(Superchip-emulator PRIVATE
         -s USE_SDL=2             # Enable SDL2
         -s ALLOW_MEMORY_GROWTH=1 # Allow WebAssembly memory to grow
         -s WASM=1                # Ensure output is WebAssembly
         -s ASSERTIONS=1          # Add runtime assertions for debugging
     )
-    target_link_options(Chip-8_emulator PRIVATE
+    target_link_options(Superchip-emulator PRIVATE
         -s USE_SDL=2
         -s ALLOW_MEMORY_GROWTH=1
         -s WASM=1
@@ -40,7 +40,7 @@ if( ${CMAKE_SYSTEM_NAME} MATCHES "Emscripten")
     )
 else()
     # Native platform: Link SDL2 static libraries
-    target_link_libraries(Chip-8_emulator PRIVATE 
+    target_link_libraries(Superchip-emulator PRIVATE 
         SDL2::SDL2-static
         SDL2::SDL2main
     )
@@ -52,24 +52,24 @@ configure_file(
     ${CMAKE_BINARY_DIR}/config.h
 )
 
-target_include_directories(Chip-8_emulator 
+target_include_directories(Superchip-emulator 
     PUBLIC 
         ${CMAKE_CURRENT_SOURCE_DIR}/include
         ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${CMAKE_BINARY_DIR}
 )
 
-target_compile_features(Chip-8_emulator PRIVATE cxx_std_23)
+target_compile_features(Superchip-emulator PRIVATE cxx_std_23)
 
 # handle warnings on Apple platforms
 if(APPLE)
     # silence deprecation warnings
-    target_compile_definitions(Chip-8_emulator PRIVATE
+    target_compile_definitions(Superchip-emulator PRIVATE
         GL_SILENCE_DEPRECATION
     )
     
     # silence specific warnings for the project
-    target_compile_options(Chip-8_emulator PRIVATE
+    target_compile_options(Superchip-emulator PRIVATE
         -Wno-deprecated-declarations
     )
     
