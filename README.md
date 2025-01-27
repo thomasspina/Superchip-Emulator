@@ -1,4 +1,4 @@
-# Chip8 Emulator 
+# Superchip Emulator 
 
 This project showcases a Superchip emulator to run simple retro games and acts as a stepping stone for more complex emulators. This project follows the exact specifications of the superchip emulator. There are multiple games included in this project as well which were found online. The superchip is an upgraded version of the Chip8 emulator with a bigger screen and faster processor.
 
