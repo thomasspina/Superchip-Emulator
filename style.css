@@ -1,0 +1,211 @@
+html {
+    font-size: 16px;
+    box-sizing: border-box;
+    font-family: "Chakra Petch", "Press Start 2P", "VT323", serif;
+    scroll-behavior: smooth;
+    line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    background-color: black;
+    color: white;
+    min-height: 99vh;
+}
+
+hr {
+    border: 1px solid black;
+    width: 90%;
+}
+
+b {
+    display: inline;
+}
+
+dialog {
+    border-radius: 15px;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+button {
+    cursor: pointer;
+}
+
+.light-mode {
+    background-color: white;
+    color: black;
+}
+
+.dark-mode {
+    background-color: black;
+    color: white;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+#dialogue-window {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 60vw;
+    min-height: 80vh;
+    overflow-y: auto; 
+}
+
+#dialogue-title {
+    font-size: 3rem;
+}
+
+#close-info {
+    top: 1rem;
+    right: 1rem;
+    position: absolute;
+    padding: 1rem;
+    background-color: white;
+    border: none;
+}
+
+#icon-info {
+    background-color: white;
+}
+
+.dialogue-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dialogue-section > p {
+    margin: 0.5rem;
+    max-width: 80%;
+}
+
+#dialogue-title {
+    font-size: clamp(2rem, 1vw + 0.5rem, 5rem);
+}
+
+#input-grids {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    flex-wrap: wrap;
+}
+
+.input-grid {
+    display: grid;
+    grid-template-columns: 2rem 2rem 2rem 2rem;
+    grid-template-rows: 2rem 2rem 2rem 2rem;
+}
+
+.input-grid > div {
+    font-weight: bold;
+    border: 1px solid black;
+    display: grid;
+    place-items: center;
+}
+
+#instruction-grid {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: 10rem 30rem
+}
+
+#instruction-grid > div {
+    padding: 0.2rem;
+    display: inline;
+    border: 1px solid black;
+    place-items: center;
+}
+
+#upper-container {
+    width: 100%;
+    position: relative; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#navigation {
+    margin-bottom: 0.5rem;
+    padding-right: 1rem;
+    width: 13rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem
+}
+
+#github, #open-info, #invert {
+    all: unset;
+    cursor: pointer;
+    background-color: inherit;
+    padding: 1rem;
+    border-radius: 15px
+}
+
+#title {
+    flex: 2;
+    text-align: center;
+    padding-left: 40px;
+    font-size: clamp(3rem, 4vw + 1rem, 6rem);
+    margin: auto;
+    padding: 0;
+    max-width: 90%;
+    word-wrap: break-word;
+
+}
+
+#canvas {
+    margin-top: 1rem;
+    border: 1px solid grey;
+    border-radius: 1%;
+    max-width: 60%;
+}
+
+#input {
+    display: flex;
+    justify-content: end;
+}
+
+#rom-select, #rom-load {
+    font-family: inherit;
+    font-weight: bold;
+    height: 3rem;
+    border-radius: 5px;
+}
+
+#rom-select {
+    padding: 0 2.4rem;
+    margin-right: 1rem;
+}
+
+#rom-load {
+    cursor: pointer;
+    padding: 0 1.2rem;
+}
+
+@media (max-width: 900px) {
+    #upper-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #navigation {
+        padding: 0;
+    }
+}
