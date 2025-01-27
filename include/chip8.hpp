@@ -6,7 +6,11 @@
 
 class Chip8 {
 private:
-    std::string game = GAME;
+    // Change default game here
+    std::string game = "Brix";
+
+    // Default emulator frequency for chip8 games
+    float emulatorFrequency = 1 / 500.0;
 
     // unsig short: 2 bytes unsig char: 1 byte
 
@@ -95,4 +99,6 @@ public:
     void tickSoundTimer() { sound_timer = sound_timer > 0 ? sound_timer - 1 : sound_timer; }
     const std::string getGame();
     void setGame(const std::string& romName);
+    const float getEmulatorFrequency();
+    void setEmulatorFrequency();
 };

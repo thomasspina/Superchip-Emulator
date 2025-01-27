@@ -94,14 +94,14 @@ void mainLoop() {
     }
 
     // Calculate how many cycles accumulated
-    int cyclesToRun = static_cast<int>(delta_acc_emulator / (c8const::EMULATOR_FREQ));
+    int cyclesToRun = static_cast<int>(delta_acc_emulator / emulator.getEmulatorFrequency());
 
     // Emulate cycles at 500 Hz
     for (int i = 0; i < cyclesToRun; ++i) {
         emulator.emulationCycle();
     }
 
-    delta_acc_emulator -= cyclesToRun * (c8const::EMULATOR_FREQ);
+    delta_acc_emulator -= cyclesToRun * (emulator.getEmulatorFrequency());
 
     // Draw the screen
     if (emulator.getDrawFlag()) {

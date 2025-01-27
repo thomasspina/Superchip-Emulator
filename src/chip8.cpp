@@ -85,6 +85,9 @@ void Chip8::loadROM() {
             const std::string fileName = std::string(GAMES_PATH) + game + ".ch8";
         #endif
 
+        // Set emulator frequency based on loaded ROM
+        setEmulatorFrequency();
+
         const std::filesystem::path inputFilePath{fileName};
 
         std::cout << "Current working directory: " << std::filesystem::current_path() << std::endl;
@@ -691,3 +694,14 @@ void Chip8::setGame(const std::string& romName) {
     game = romName;
 }
 
+const float Chip8::getEmulatorFrequency() {
+    return emulatorFrequency;
+}
+
+void Chip8::setEmulatorFrequency() {
+    const char* curr_game = game.c_str();
+    emulatorFrequency = (str_equals(curr_game, "WORM3") || 
+                            str_equals(curr_game, "PIPER") || 
+                            str_equals(curr_game, "JOUST") || 
+                            str_equals(curr_game, "ALIEN")) ? 1 / 2000.0 : 1 / 500.0;
+}
