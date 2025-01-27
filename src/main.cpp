@@ -20,7 +20,7 @@ void initialize() {
     emulator = Chip8();
     graphics::initializeGraphics();
     graphics::clearScreen();
-    emulator.loadROM(GAME);
+    emulator.loadROM();
     quit = false;
     prev_time = std::chrono::steady_clock::now();
 }
@@ -31,10 +31,16 @@ void cleanup() {
 
 void resetEmulator() {
     std::cout << "Game reset!\n";
+    // Get current instance's game
+    const std::string currGame = emulator.getGame();
     emulator = Chip8();
     graphics::clearScreen();
     graphics::clearBuffer();
     emulator.loadROM(GAME);
+  
+    // Set current emulator instance as the reset game
+    emulator.setGame(currGame);
+    emulator.loadROM();
 }
 
 void handleEvents() {
@@ -88,7 +94,6 @@ void mainLoop() {
         delta_acc_timer = 0;
     }
 
-    
     // Calculate how many cycles accumulated
     int cyclesToRun = static_cast<int>(delta_acc_emulator / (c8const::SUPER_EMULATOR_FREQ));
 
@@ -122,7 +127,7 @@ int main(int argc, char* argv[]) {
 
     #if __EMSCRIPTEN__
         // Use Emscripten's main loop
-        emscripten_set_main_loop(mainLoop, 60, 1);
+        emscripten_set_main_loop(mainLoop, 0, 1);
     #else
         // Native loop
         while (!quit) {
@@ -134,14 +139,14 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 
-// Extern C Functions
 extern "C" {
     void loadROM(const char* romName) {
         std::string romNameStr(romName);
         emulator = Chip8();                     // Reset emulator
         graphics::clearScreen();                // Clear screen
         graphics::clearBuffer();
-        emulator.loadROM(romNameStr);          // Load the ROM
+        emulator.setGame(romName);
+        emulator.loadROM();
     }
 
     void invert(const char* romName) {

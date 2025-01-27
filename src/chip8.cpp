@@ -76,13 +76,13 @@ void Chip8::setKeyState(const unsigned char& key_id, const unsigned char& state)
     key[key_id] = state; 
 }
 
-void Chip8::loadROM(const std::string& message) {
+void Chip8::loadROM() {
     try {
         // Construct the filename and path
         #if __EMSCRIPTEN__ 
-            const std::string fileName = "../../games/" + message + ".ch8";
+            const std::string fileName = "../../games/" + game + ".ch8";
         #else
-            const std::string fileName = std::string(GAMES_PATH) + message + ".ch8";
+            const std::string fileName = std::string(GAMES_PATH) + game + ".ch8";
         #endif
 
         const std::filesystem::path inputFilePath{fileName};
@@ -682,4 +682,12 @@ void Chip8::executeMISC(unsigned short opInstruction) {
     }
 }
 
+const std::string Chip8::getGame() {
+    return game;
+}
+
+// Set Game Value
+void Chip8::setGame(const std::string& romName) {
+    game = romName;
+}
 

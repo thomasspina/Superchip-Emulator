@@ -2,7 +2,6 @@
 
 #include <unordered_map>
 
-/* MODIFY CONSTANT BELOW TO CHANGE GAMES */
 #define GAME "FIELD"
 
 #define SC8_SCREEN_WIDTH 128

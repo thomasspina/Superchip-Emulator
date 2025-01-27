@@ -3,6 +3,7 @@
 This project showcases a Chip8 emulator to run simple retro games and acts as a stepping stone for the Super Chip8 emulator and eventually more complex emulators. This project follows the exact specifications of the Chip8 emulator. There are multiple games included in this project as well which were found online.
 
 ## Navigation
+- [Web Build](#web-build)
 - [Demo](#demo)
 - [Specs and Features](#specs-and-features)
   - [Specs](#specs)
@@ -18,6 +19,14 @@ This project showcases a Chip8 emulator to run simple retro games and acts as a 
 - [Technology](#technology)
 - [Future Improvements](#future-improvements)
 - [Sources](#sources)
+
+## Web Build
+This emulator is now runnable in the browser through WebAssembly (WASM). To access or use the web version, refer to the dedicated branch containing all relevant information and setup instructions.
+- **Website link (Github Pages)**: [Website](https://thomasspina.github.io/Chip8-emulator/)
+- **Browser Version Branch**: [Branch](https://github.com/thomasspina/Chip8-emulator/tree/website)
+
+<img src="https://github.com/user-attachments/assets/01892a5f-f720-4204-979e-e124b2276c69" width="1500" />
+*The Chip-8 emulator running UFO on the web*
 
 ## Demo
 ### Breakout 
@@ -66,12 +75,12 @@ Interpreter Keyboard
 | A | S | D | F |
 | Z | X | C | V |
 ### Features
-The project has comes with multiple games, the default one that is loaded is tetris. To change games, the game title must be changed in the [constants](include/constants.hpp) file.
+The project has comes with multiple games, the default one that is loaded is tetris. To change games, the game title must be changed in the [chip8](include/chip8.hpp) file.
 To do so simply change this line at the beginning of the file 
 ```cpp
-#define GAME "Tetris"
+std::string game = "Brix";
 ```
-and change tetris to one of the file names in the [games](games) folder.
+and change Brix to one of the file names in the [games](games) folder.
 You can also add other chip8 games that you find online to that file and run them the same way.
 
 ## Installation
