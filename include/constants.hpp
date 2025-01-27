@@ -3,7 +3,7 @@
 #include <unordered_map>
 
 /* MODIFY CONSTANT BELOW TO CHANGE GAMES */
-#define GAME "Brix"
+#define GAME "FIELD"
 
 #define SC8_SCREEN_WIDTH 128
 #define SC8_SCREEN_HEIGHT 64
@@ -18,7 +18,7 @@
 
 namespace c8const {
     constexpr float TIMER_FREQ = 1 / 60.0;
-    constexpr float EMULATOR_FREQ = 1 / 500.0;
+    constexpr float SUPER_EMULATOR_FREQ = 1 / 2000.0;
     constexpr int PROGRAM_START_ADDR = 512;
 
     constexpr unsigned char chip8_fontset[240] = 

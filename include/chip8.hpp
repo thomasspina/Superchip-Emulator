@@ -50,6 +50,7 @@ private:
     bool draw_flag;
     bool high_res_flag;
     bool key_wait_flag;
+    bool reset_flag;
 
     void clearStack();
     void clearRegisters();
@@ -85,6 +86,7 @@ public:
     void loadROM(const std::string& message);
     void emulationCycle();
     bool getDrawFlag() const { return draw_flag; }
+    bool getResetFlag() const { return reset_flag; }
     void setDrawFlag(bool flag) { draw_flag = flag; }
     void setKeyState(const unsigned char& key_id, const unsigned char& state);
     void tickDelayTimer() { delay_timer = delay_timer > 0 ? delay_timer - 1 : delay_timer; }

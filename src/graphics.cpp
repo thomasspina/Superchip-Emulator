@@ -78,14 +78,38 @@ void graphics::invert() {
 }
 
 void graphics::scrollLeft(int N) {
-    // TODO:
+    for (int i = 0; i < SC8_SCREEN_HEIGHT; i++) {
+        for (int j = 0; j < SC8_SCREEN_WIDTH - N; j++) {
+            graphics::gfx[i][j] = graphics::gfx[i][j + N];
+        }
+
+        for (int j = SC8_SCREEN_WIDTH - N; j < SC8_SCREEN_WIDTH; j++) {
+            graphics::gfx[i][j] = 0;
+        }
+    }
 }
 
 void graphics::scrollRight(int N) {
-    // TODO:
+    for (int i = 0; i < SC8_SCREEN_HEIGHT; i++) {
+        for (int j = N; j < SC8_SCREEN_WIDTH; j++) {
+            graphics::gfx[i][j] = graphics::gfx[i][j - N];
+        }
+
+        for (int j = 0; j < N; j++) {
+            graphics::gfx[i][j] = 0;
+        }
+    }
 }
 
 void graphics::scrollDown(int N) {
-    // TODO:   
+    for (int j = 0; j < SC8_SCREEN_WIDTH; j++) {
+        for (int i = N; i < SC8_SCREEN_HEIGHT; i++) {
+            graphics::gfx[i][j] = graphics::gfx[i - N][j];
+        }
+
+        for (int i = 0; i < N; i++) {
+            graphics::gfx[i][j] = 0;
+        }
+    }   
 }
 
