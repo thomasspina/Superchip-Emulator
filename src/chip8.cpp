@@ -21,6 +21,8 @@ Chip8::Chip8() {
     // set flags
     draw_flag = false;
     key_wait_flag = false;
+    high_res_flag = false;
+    reset_flag = false;
     
     clearStack();
     clearRegisters();
@@ -63,7 +65,7 @@ void Chip8::resetTimers() {
 
 void Chip8::loadFontSet() {
     // first 80 bytes of memory stores default sprites
-    for (int i=0; i < 80; i++) {
+    for (int i=0; i < 240; i++) {
         memory[i] = c8const::chip8_fontset[i];
     }
 }
@@ -233,6 +235,14 @@ void Chip8::decodeOpcode() {
 }
 
 void Chip8::executeSI(unsigned short opInstruction) {
+    if ((opInstruction & 0x00F0) == 0x00C0) {
+        // SCRL DWN N - 00CN : Scroll display N pixels down; in low resolution mode, N/2 pixels
+        graphics::scrollDown(0x000F & opInstruction);
+        draw_flag = true;
+        pc += 2;
+        return;
+    }
+
     switch(opInstruction & 0x00FF) {
         // CLS - 00E0 : CLear display
         case 0x00E0:
@@ -247,6 +257,33 @@ void Chip8::executeSI(unsigned short opInstruction) {
             }
             pc = stack[sp];
             sp -= 1;
+        break;
+
+        // SCRL RGT 4 - 00FB : Scroll right by 4 pixels; in low resolution mode, 2 pixels
+        case 0x00FB:
+            graphics::scrollRight(4);
+            draw_flag = true;
+        break;
+
+        // SCRL LFT 4 - 00FC : Scroll left by 4 pixels; in low resolution mode, 2 pixels
+        case 0x00FC:
+            graphics::scrollLeft(4);
+            draw_flag = true;
+        break;
+
+        // EXT - 00FD : Exit interpreter
+        case 0x00FD:
+            reset_flag = true; // exit remade as reset instead
+        break;
+
+        // DISBL HI-RES - 00FE : Disable high-resolution mode
+        case 0x00FE:
+            high_res_flag = false;
+        break;
+
+        // ENABL HI-RES - 00FF : Enable high-resolution mode
+        case 0x00FF:
+            high_res_flag = true;
         break;
 
         default:
@@ -473,21 +510,50 @@ void Chip8::executeDR(unsigned short opInstruction) {
     unsigned short x = V[(opInstruction & 0x0F00) >> 8];
     unsigned short y = V[(opInstruction & 0x00F0) >> 4];
     unsigned short h = opInstruction & 0x000F;
+    unsigned short left_most_bit = 0x80;
+    int col_max = 8;
+
+    if (!high_res_flag) { x *= 2; y *= 2; }
+    // set variables for 16x16 sprites
+    if (high_res_flag && h == 0) { 
+        h = 32; 
+        col_max = 16; 
+        left_most_bit = 0x8000;
+    }
+
     unsigned short line;
 
     V[0xF] = 0;
     for (int row = 0; row < h; row++) {
-        line = memory[I + row];
-        for (int col = 0; col < 8; col++) {
-            if ((line & (0x80 >> col)) != 0) {
-                // Ensures x and y coordinate wraps around when out of bounds
-                int wrappedX = (x + col) % C8_SCREEN_WIDTH;  
-                int wrappedY = (y + row) % C8_SCREEN_HEIGHT;  
 
-                if (graphics::gfx[wrappedY][wrappedX]) {
-                    V[0xF] = 1;
+        line = memory[I + row];
+        if (h == 32) { line = (line << 8) | memory[I + (++row)]; } // next row is part of line when drawing 16x16 sprites
+
+        for (int col = 0; col < col_max; col++) {
+            if ((line & (left_most_bit >> col)) != 0) {
+
+                if (high_res_flag) {
+                    int wX = (x + col) % SC8_SCREEN_WIDTH;
+                    int wY = (y + row) % SC8_SCREEN_HEIGHT;
+
+                    // TODO: it isn't just set at one now. It's taking into account rows and cols?
+                    V[0xF] |= graphics::gfx[wY][wX] & 1;
+
+                    graphics::gfx[wY][wX] ^= 1;
+
+                } else {
+                    // Ensures x and y coordinate wraps around when out of bounds
+                    int wX = (x + (col * 2)) % SC8_SCREEN_WIDTH;  
+                    int wY = (y + (row * 2)) % SC8_SCREEN_HEIGHT;
+
+                    // draw 2x2 blocks when in low res mode to fit on 128x64 screen
+                    for (int blockX = 0; blockX < 2; blockX++) {
+                        for (int blockY = 0; blockY < 2; blockY++) {
+                            V[0xF] |= graphics::gfx[wY + blockY][wX + blockX] & 1;
+                            graphics::gfx[wY + blockY][wX + blockX] ^= 1; // XOR draw
+                        }
+                    }
                 }
-                graphics::gfx[wrappedY][wrappedX] ^= 1; // XOR draw
             }
         }
     }
@@ -564,7 +630,12 @@ void Chip8::executeMISC(unsigned short opInstruction) {
 
         case 0x0029:
             // Fx29 - LD F, Vx : Set I = location of sprite for digit Vx.
-            I = (V[x] & 0x0F) * 0x5;
+            I = (V[x] & 0x0F) * 5;
+        break;
+
+        case 0x0030:
+            // Fx30 - LD F, Vx : Point I to 10-byte font sprite for digit VX (only digits 0-9)
+            I = 80 + (V[x] & 0x0F) * 10;
         break;
 
         case 0x0033:
@@ -585,6 +656,20 @@ void Chip8::executeMISC(unsigned short opInstruction) {
             // Fx65 - LD Vx, [I] : Read registers V0 through Vx from memory starting at location I.
             for (int i = 0; i <= x; i++) {
                 V[i] = memory[I + i];
+            }
+        break;
+
+        case 0x0075:
+            // Fx75 - LD RPL, Vx : Store V0..VX in RPL user flags (X <= 7)
+            for (int i = 0; i <= x; i++) {
+                RPL[i] = V[i];
+            }
+        break;
+
+        case 0x0085:
+            // Fx85 - LD Vx, RPL : Read V0..VX from RPL user flags (X <= 7)
+            for (int i = 0; i <= x; i++) {
+                V[i] = RPL[i];
             }
         break;
 

@@ -11,6 +11,9 @@ namespace graphics {
     void clearBuffer();
     void drawScreen();
     void invert();
+    void scrollLeft(int N);
+    void scrollRight(int N);
+    void scrollDown(int N);
 
-    extern unsigned char gfx[C8_SCREEN_HEIGHT][C8_SCREEN_WIDTH];
+    extern unsigned char gfx[SC8_SCREEN_HEIGHT][SC8_SCREEN_WIDTH];
 };
