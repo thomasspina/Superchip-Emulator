@@ -36,7 +36,6 @@ void resetEmulator() {
     emulator = Chip8();
     graphics::clearScreen();
     graphics::clearBuffer();
-    emulator.loadROM(GAME);
   
     // Set current emulator instance as the reset game
     emulator.setGame(currGame);
@@ -95,14 +94,14 @@ void mainLoop() {
     }
 
     // Calculate how many cycles accumulated
-    int cyclesToRun = static_cast<int>(delta_acc_emulator / (c8const::SUPER_EMULATOR_FREQ));
+    int cyclesToRun = static_cast<int>(delta_acc_emulator / (c8const::EMULATOR_FREQ));
 
     // Emulate cycles at 500 Hz
     for (int i = 0; i < cyclesToRun; ++i) {
         emulator.emulationCycle();
     }
 
-    delta_acc_emulator -= cyclesToRun * (c8const::SUPER_EMULATOR_FREQ);
+    delta_acc_emulator -= cyclesToRun * (c8const::EMULATOR_FREQ);
 
     // Draw the screen
     if (emulator.getDrawFlag()) {

@@ -2,7 +2,8 @@
 
 #include <unordered_map>
 
-#define GAME "FIELD"
+// Change default game here
+#define GAME "Brix"
 
 #define SC8_SCREEN_WIDTH 128
 #define SC8_SCREEN_HEIGHT 64
@@ -15,9 +16,17 @@
 #define AUDIO_SAMPLES 2048
 #define AUDIO_VOLUME .2f
 
+constexpr bool str_equals(const char* a, const char* b) {
+    while (*a && *b && *a == *b) { ++a; ++b; }
+    return *a == *b;
+}
+
 namespace c8const {
     constexpr float TIMER_FREQ = 1 / 60.0;
-    constexpr float SUPER_EMULATOR_FREQ = 1 / 2000.0;
+    constexpr float EMULATOR_FREQ = (str_equals(GAME, "WORM3") || 
+                                    str_equals(GAME, "PIPER") || 
+                                    str_equals(GAME, "JOUST") || 
+                                    str_equals(GAME, "ALIEN")) ? 1 / 2000.0 : 1 / 500.0;
     constexpr int PROGRAM_START_ADDR = 512;
 
     constexpr unsigned char chip8_fontset[240] = 
