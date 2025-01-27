@@ -105,7 +105,7 @@ brew install cmake
 
 Then clone the github repo onto your computer
 ~~~
-git clone https://github.com/thomasspina/chip-8_emulator.git
+git clone https://github.com/thomasspina/Superchip-emulator.git
 ~~~
 
 In the repo make a build directory in which the project will be built and switch to that directory
@@ -120,7 +120,7 @@ cmake .. && make -j 4
 
 Then to run the project you have to run the generated binary in the bin directory within the build directory
 ~~~
-./bin/Chip-8_emulator
+./bin/Superchip-emulator
 ~~~
 
 ### Windows
@@ -129,7 +129,7 @@ Install Cmake (PATH recommended) (https://cmake.org/download/)
 
 Then clone the github repo onto your computer
 ~~~
-git clone https://github.com/thomasspina/chip-8_emulator.git
+git clone https://github.com/thomasspina/Superchip-emulator.git
 ~~~
 
 #### Choose one of the following toolchains:
@@ -147,14 +147,14 @@ mingw32-make -C build
 #### For Visual Studio
 ~~~
 cmake -S . -B build -G "Visual Studio 17 2022"
-msbuild build/Chip-8_emulator.sln /p:Configuration=Release
+msbuild build/Superchip-emulator.sln /p:Configuration=Release
 ~~~
 
 #### Lastly
 
 Run the generated binary in the bin directory within the build directory
 ~~~
-./bin/Chip-8_emulator
+./bin/Superchip-emulator
 ~~~
 
 ## Technology
