@@ -1,6 +1,6 @@
 # Superchip Emulator 
 
-This project showcases a Superchip emulator to run simple retro games and acts as a stepping stone for more complex emulators. This project follows the exact specifications of the superchip emulator. There are multiple games included in this project as well which were found online. The superchip is an upgraded version of the Chip8 emulator with a bigger screen and faster processor.
+This project showcases a Superchip emulator to run simple retro games and acts as a stepping stone for more complex emulators. This project follows the exact specifications of the superchip emulator. There are multiple games included in this project as well which were found online. The superchip is an upgraded version of the Chip8 emulator with a bigger screen and faster processor. The superchip is also able to run games for the less powerfull chip8 system.
 
 ## Navigation
 - [Web Build](#web-build)
@@ -29,19 +29,23 @@ This emulator is now runnable in the browser through WebAssembly (WASM). To acce
 *The Superchip emulator running UFO on the web*
 
 ## Demo
-### Breakout 
+### Breakout (Chip8)
 <img src="https://github.com/user-attachments/assets/91e574aa-d5bc-457a-b6b9-80bf8166a8ff" width="1500" />
 
-### Space Invaders
+### Space Invaders (Chip8)
 <img src="https://github.com/user-attachments/assets/8b2cbe0e-da3d-4e3d-9c09-6ad972c373a3" width="1500" />
-
-### Pong2
+ 
+### Pong2 (Chip8)
 <img src="https://github.com/user-attachments/assets/004568b1-1778-414a-b18f-361d75cf34fd" width="1500" />
 
-### Tetris
+### Tetris (Chip8)
 <img src="https://github.com/user-attachments/assets/ddf05a7e-e1db-4660-9b3d-041035659d72" width="1500" />
 
+### Piper (Superchip)
+![piper](https://github.com/user-attachments/assets/d8eccbef-2c53-49bb-9d76-ed4b54426dab)
 
+### Alien (Superchip)
+![alien](https://github.com/user-attachments/assets/ec6dc7a4-d810-487f-a763-97fd04b8f6e8)
 
 ## Specs and Features
 
