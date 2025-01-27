@@ -1,6 +1,6 @@
 # Chip8 Emulator 
 
-This project showcases a Chip8 emulator to run simple retro games and acts as a stepping stone for the Super Chip8 emulator and eventually more complex emulators. This project follows the exact specifications of the Chip8 emulator. There are multiple games included in this project as well which were found online.
+This project showcases a Superchip emulator to run simple retro games and acts as a stepping stone for more complex emulators. This project follows the exact specifications of the superchip emulator. There are multiple games included in this project as well which were found online. The superchip is an upgraded version of the Chip8 emulator with a bigger screen and faster processor.
 
 ## Navigation
 - [Web Build](#web-build)
@@ -26,7 +26,7 @@ This emulator is now runnable in the browser through WebAssembly (WASM). To acce
 - **Browser Version Branch**: [Branch](https://github.com/thomasspina/Chip8-emulator/tree/website)
 
 <img src="https://github.com/user-attachments/assets/01892a5f-f720-4204-979e-e124b2276c69" width="1500" />
-*The Chip-8 emulator running UFO on the web*
+*The Superchip emulator running UFO on the web*
 
 ## Demo
 ### Breakout 
@@ -46,17 +46,13 @@ This emulator is now runnable in the browser through WebAssembly (WASM). To acce
 ## Specs and Features
 
 ### Specs
-The Chip8 emulator specs can all be found in the sources portion of this README. Here are just a few that are worth mentionning.
+The Superchip emulator specs can all be found in the sources portion of this README. Here are just a few that are worth mentionning.
 #### Processor
-The Chip8 processor has 16 8-bit registers, 4KB of RAM, and two 8-bit timers. The timers run, according to the specs, at 60 Hz. Finding the processor clock frequency though was much harder and we ended up settling on 500 Hz. This frequency can be modified in the [constants](include/constants.hpp) file by modifiying this line
-```cpp
-constexpr float EMULATOR_FREQ = 1 / 500.0;
-```
-this would make the emulator run faster, which could be beneficial for certain games like space invaders.
+The Superchip processor has 16 8-bit registers, 4KB of RAM, and two 8-bit timers. The timers run, according to the specs, at 60 Hz. Finding the processor clock frequency though was much harder and we ended up settling on 500 Hz for the chip8 and 2000 Hz for the superchip.
 #### Graphics
-The emulator has a 64x32 display, which isn't much. So in this rendition of the emulator, the screen is scaled up by a factor of 20. This scale can be changed according to your needs by modifying the following line in the [constants](include/constants.hpp) file.
+The emulator has a 128x64 display, which isn't much. So in this rendition of the emulator, the screen is scaled up by a factor of 10. This scale can be changed according to your needs by modifying the following line in the [constants](include/constants.hpp) file.
 ```cpp
-#define C8_SCREEN_SCALE 20
+#define C8_SCREEN_SCALE 10
 ```
 #### Keyboard
 The Chip8 system uses a 4x4 button pad which we mapped the following way onto the keyboard. <br />
@@ -75,13 +71,20 @@ Interpreter Keyboard
 | A | S | D | F |
 | Z | X | C | V |
 ### Features
-The project has comes with multiple games, the default one that is loaded is tetris. To change games, the game title must be changed in the [chip8](include/chip8.hpp) file.
+The project has comes with multiple games, the default one that is loaded is tetris. To change games, the game title must be changed in the [constants](include/constants.hpp) file.
 To do so simply change this line at the beginning of the file 
 ```cpp
-std::string game = "Brix";
+#define GAME "Brix"
 ```
 and change Brix to one of the file names in the [games](games) folder.
-You can also add other chip8 games that you find online to that file and run them the same way.
+You can also add other chip8 and super chip games that you find online to that file and run them the same way.
+The games with names in all caps are superchip games. Superchip games that are added must also be added to the line which modifies the frequency based on the game (chip8 or superchip). The line is in [constants](include/constants.hpp) 
+```cpp
+constexpr float EMULATOR_FREQ = (str_equals(GAME, "WORM3") || 
+                                    str_equals(GAME, "PIPER") || 
+                                    str_equals(GAME, "JOUST") || 
+                                    str_equals(GAME, "ALIEN")) ? 1 / 2000.0 : 1 / 500.0;
+```
 
 ## Installation
 ### MacOS
@@ -159,13 +162,17 @@ C++ was chosen to be the building blocks for the project because of the low leve
 
 ## Future Improvements
 
-As mentionned in the description, this project is a stepping stone to the Super Chip8 emulator which can emulate much more interesting games. These improvements can be made through a few extra opcodes and an improvement to the graphics and memory.
+This project is the final evolution of the chip8. Any improvements would simply be another system.
 
 ## Sources
-Technical reference for Chip8: 
+Technical references for Chip8: 
   - https://multigesture.net/articles/how-to-write-an-emulator-chip-8-interpreter/ 
   - http://devernay.free.fr/hacks/chip8/C8TECH10.HTM
+Technical references for superchip:
+  - https://chip-8.github.io/extensions/#super-chip-10
+  - http://devernay.free.fr/hacks/chip8/schip.txt
 
-Chip8 Game Library:
+Superchip and Chip8 Game Library:
+  - https://www.zophar.net/pdroms/chip8/super-chip-games-pack.html
   - https://archive.org/details/chip-8-games
 
