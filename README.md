@@ -22,8 +22,8 @@ This project showcases a Super-CHIP emulator to run simple retro games and acts 
 
 ## Web Build
 This emulator is now runnable in the browser through WebAssembly (WASM). To access or use the web version, refer to the dedicated branch containing all relevant information and setup instructions.
-- **Website link (Github Pages)**: [Website](https://thomasspina.github.io/Superchip-emulator/)
-- **Browser Version Branch**: [Branch](https://github.com/thomasspina/Superchip-emulator/tree/website)
+- **Website link (Github Pages)**: <a href="https://thomasspina.github.io/Superchip-emulator/" target="_blank" rel="noopener noreferrer">Website</a>
+- **Browser Version Branch**: <a href="https://github.com/thomasspina/Superchip-emulator/tree/website" target="_blank" rel="noopener noreferrer">Website</a>
 
 <img src="https://github.com/user-attachments/assets/01892a5f-f720-4204-979e-e124b2276c69" width="1500" />
 *The Super-CHIP emulator running UFO on the web*
