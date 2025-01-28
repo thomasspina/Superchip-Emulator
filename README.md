@@ -26,7 +26,7 @@ This emulator is now runnable in the browser through WebAssembly (WASM). To acce
 - **Browser Version Branch**: [Branch](https://github.com/thomasspina/Superchip-emulator/tree/website)
 
 <img width="1714" alt="Screenshot 2025-01-27 at 9 31 39 PM" src="https://github.com/user-attachments/assets/19d3bf9f-5863-4062-a8de-b44ec5e678b6" />
-*The Super-CHIP emulator running UFO on the web*
+*The Super-CHIP emulator running Alien on the web*
 
 ## Demo
 ### Breakout (Chip8)
