@@ -3,10 +3,6 @@
 #include <chrono>
 #include <iostream>
 
-#ifdef __EMSCRIPTEN__
-#include <emscripten.h>
-#endif
-
 // Global variables
 Chip8 emulator;
 bool quit = false;
@@ -114,9 +110,7 @@ void mainLoop() {
         resetEmulator();
     }
 
-    // Exit handling for Emscripten
     if (quit) {
-        // emscripten_cancel_main_loop();  // Stop the loop
         cleanup();
     }
 }
@@ -124,33 +118,11 @@ void mainLoop() {
 int main(int argc, char* argv[]) {
     initialize();
 
-    #if __EMSCRIPTEN__
-        // Use Emscripten's main loop
-        emscripten_set_main_loop(mainLoop, 0, 1);
-    #else
-        // Native loop
-        while (!quit) {
-            mainLoop();
-        }
-        cleanup();
-    #endif
+    while (!quit) {
+        mainLoop();
+    }
+    cleanup();
 
     return 0;
-}
-
-extern "C" {
-    void loadROM(const char* romName) {
-        std::string romNameStr(romName);
-        emulator = Chip8();                     // Reset emulator
-        graphics::clearScreen();                // Clear screen
-        graphics::clearBuffer();
-        emulator.setGame(romName);
-        emulator.loadROM();
-    }
-
-    void invert(const char* romName) {
-        graphics::invert();
-        loadROM(romName);
-    }
 }
 

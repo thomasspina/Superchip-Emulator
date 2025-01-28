@@ -2,10 +2,7 @@
 #include "graphics.hpp"
 #include "constants.hpp"
 
-#ifndef __EMSCRIPTEN__
 #include "config.h"
-#endif
-
 #include <fstream>
 #include <vector>
 #include <iostream>
@@ -79,11 +76,7 @@ void Chip8::setKeyState(const unsigned char& key_id, const unsigned char& state)
 void Chip8::loadROM() {
     try {
         // Construct the filename and path
-        #if __EMSCRIPTEN__ 
-            const std::string fileName = "../../games/" + game + ".ch8";
-        #else
-            const std::string fileName = std::string(GAMES_PATH) + game + ".ch8";
-        #endif
+        const std::string fileName = std::string(GAMES_PATH) + game + ".ch8";
 
         const std::filesystem::path inputFilePath{fileName};
 

@@ -21,30 +21,13 @@ file(GLOB HEADERS include/*.hpp)
 file(GLOB SOURCES src/*.cpp)
 add_executable(Superchip-emulator ${HEADERS} ${SOURCES})
 
-# Handle Emscripten-specific configuration TODO: Properly configure cmake for emscripten
-if( ${CMAKE_SYSTEM_NAME} MATCHES "Emscripten")
-    # Set Emscripten-specific flags
-    set(CMAKE_EXECUTABLE_SUFFIX ".html") # Output as HTML
-    target_compile_options(Superchip-emulator PRIVATE
-        -s USE_SDL=2             # Enable SDL2
-        -s ALLOW_MEMORY_GROWTH=1 # Allow WebAssembly memory to grow
-        -s WASM=1                # Ensure output is WebAssembly
-        -s ASSERTIONS=1          # Add runtime assertions for debugging
-    )
-    target_link_options(Superchip-emulator PRIVATE
-        -s USE_SDL=2
-        -s ALLOW_MEMORY_GROWTH=1
-        -s WASM=1
-        -s ASSERTIONS=1
-        --no-heap-copy        # Optimize memory usage
-    )
-else()
-    # Native platform: Link SDL2 static libraries
-    target_link_libraries(Superchip-emulator PRIVATE 
-        SDL2::SDL2-static
-        SDL2::SDL2main
-    )
-endif()
+
+# Native platform: Link SDL2 static libraries
+target_link_libraries(Superchip-emulator PRIVATE 
+    SDL2::SDL2-static
+    SDL2::SDL2main
+)
+
 
 set(GAMES_PATH "${CMAKE_CURRENT_SOURCE_DIR}/games/")
 configure_file(
