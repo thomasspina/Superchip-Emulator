@@ -25,8 +25,8 @@ This emulator is now runnable in the browser through WebAssembly (WASM). To acce
 - **Website link (Github Pages)**: [Website](https://thomasspina.github.io/Superchip-emulator/)
 - **Browser Version Branch**: [Branch](https://github.com/thomasspina/Superchip-emulator/tree/website)
 
-<img width="1714" alt="Screenshot 2025-01-27 at 9 31 39 PM" src="https://github.com/user-attachments/assets/19d3bf9f-5863-4062-a8de-b44ec5e678b6" />
-*The Super-CHIP emulator running Alien on the web*
+<img width="1714" alt="Web emulator running Joust" src="https://github.com/user-attachments/assets/3ca9ace6-f414-4f60-884c-2ef4d815a77d" />
+*The Super-CHIP emulator running Joust on the web*
 
 ## Demo
 ### Breakout (Chip8)
