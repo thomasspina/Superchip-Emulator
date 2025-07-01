@@ -21,7 +21,7 @@ This project showcases a Super-CHIP emulator to run simple retro games and acts 
 
 ## Web Build
 This emulator is now runnable in the browser through WebAssembly (WASM). To access or use the web version, refer to the dedicated branch containing all relevant information and setup instructions.
-- **Website link (Github Pages)**: [Website](https://thomasspina.github.io/Superchip-emulator/)
+- **Website link (Github Pages)**: [Website](https://thomasspina.github.io/Superchip-Emulator/)
 - **Browser Version Branch**: [Branch](https://github.com/thomasspina/Superchip-emulator/tree/website)
 
 <img width="1714" alt="Web emulator running Joust" src="https://github.com/user-attachments/assets/3ca9ace6-f414-4f60-884c-2ef4d815a77d" />
